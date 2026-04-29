@@ -44,15 +44,12 @@
       </div>
 
       <div class="cs-socials">
-        <div class="cs-social">f</div>
-        <div class="cs-social">in</div>
-        <div class="cs-social">@</div>
-        <div class="cs-social">▶</div>
+        <a href="https://www.facebook.com/MERICAN.CLEANING.PRODUCTS" target="_blank" rel="noopener noreferrer" class="cs-social">f</a>
       </div>
 
     </div>
 
-    <div class="cs-tagline">El poder de la limpieza — powercleaner.mx</div>
+    <div class="cs-tagline">El poder de la limpieza — powercleanergroup.com</div>
   </div>
 </template>
 
@@ -246,6 +243,15 @@ export default {
     font-weight: 700;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .cs-social:hover {
+    transform: scale(1.15);
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.4);
+    color: #fff;
   }
 
   .cs-tagline {
