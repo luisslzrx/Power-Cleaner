@@ -3,7 +3,7 @@
   <section class="w-full font-sans px-8">
     <div
       class="relative w-full overflow-hidden rounded-b-3xl bg-cover bg-center bg-no-repeat"
-      style="min-height: 580px; background-image: url('/src/assets/images/fondo4.png')"
+      :style="{ minHeight: '580px', backgroundImage: `url(${fondo4})` }"
     >
       <!-- Blue overlay -->
       <div class="absolute inset-0 bg-power-primary/90"></div>
@@ -71,6 +71,7 @@
 </template>
 
 <script setup>
+import fondo4 from '@/assets/images/fondo4.png'
 // HeroSection component
 </script>
 

@@ -4,7 +4,7 @@
       <!-- Background image -->
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style="background-image: url('/src/assets/images/fondo4.png')"
+        :style="{ backgroundImage: `url(${fondo4})` }"
       ></div>
 
       <!-- Blue overlay -->
@@ -68,5 +68,6 @@
 </template>
 
 <script setup>
+import fondo4 from '@/assets/images/fondo4.png'
 // No functions — design only
 </script>

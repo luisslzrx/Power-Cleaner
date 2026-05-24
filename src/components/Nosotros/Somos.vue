@@ -6,13 +6,13 @@
         <!-- Izquierda: Imagen -->
         <div
           class="relative overflow-hidden rounded-2xl flex-1"
-          style="
-            background-image: url('/src/assets/images/producto-power-clean.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100%;
-          "
+          :style="{
+            backgroundImage: `url(${productoPowerClean})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100%',
+          }"
         ></div>
 
         <!-- Derecha: Texto -->
@@ -104,6 +104,7 @@
 </template>
 
 <script setup>
+import productoPowerClean from '@/assets/images/producto-power-clean.png'
 const features = [
   'Fórmula Americana',
   'Fabricación propia',
