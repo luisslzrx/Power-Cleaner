@@ -4,7 +4,7 @@
       class="relative w-full overflow-hidden rounded-b-3xl min-h-[580px]"
       style="
         min-height: 580px;
-        background-image: url('/src/assets/images/fondo2.png');
+        background-image: url('/images/fondo2.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
