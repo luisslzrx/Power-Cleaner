@@ -1,7 +1,7 @@
 <template>
   <section class="w-full font-sans">
-    <!-- Top bar -->
-    <div class="w-full px-6 py-2 flex items-center justify-between bg-power-primary">
+    <!-- Top bar - oculta en móvil -->
+    <div class="hidden md:flex w-full px-6 py-2 items-center justify-between bg-power-primary">
       <div class="flex items-center gap-3">
         <span class="text-white text-xs tracking-widest">★ ★ ★ ★ ★</span>
         <span class="text-white text-xs font-medium tracking-wide"
@@ -90,17 +90,23 @@
     </div>
 
     <!-- Main header bar -->
-    <div class="w-full px-6 py-4 flex items-center gap-6 bg-power-primary border-t border-white/10">
+    <div
+      class="w-full px-4 md:px-6 py-3 md:py-4 flex items-center justify-between bg-power-primary border-t border-white/10"
+    >
       <!-- Logo -->
       <div class="flex-shrink-0">
         <router-link to="/">
-          <img src="/src/assets/images/icono.png" alt="Power Cleaner" class="h-14 object-contain" />
+          <img
+            src="/src/assets/images/icono.png"
+            alt="Power Cleaner"
+            class="h-10 md:h-14 object-contain"
+          />
         </router-link>
       </div>
 
-      <!-- Search bar -->
+      <!-- Search bar - desktop -->
       <div
-        class="flex-1 flex items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3 hover:border-white/20 transition-colors"
+        class="hidden md:flex flex-1 items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3 hover:border-white/20 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -119,51 +125,93 @@
         <span class="text-white/30 text-sm flex-1">Buscar productos de limpieza...</span>
       </div>
 
-      <!-- Sign In -->
-      <div
-        class="flex items-center gap-2 cursor-pointer group flex-shrink-0 px-4 py-2.5 rounded-lg border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] transition-all"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+      <!-- Right side: Sign In, Cart, Mobile buttons -->
+      <div class="flex items-center gap-2 md:gap-4">
+        <!-- Sign In - desktop -->
+        <div
+          class="hidden md:flex items-center gap-2 cursor-pointer group flex-shrink-0 px-4 py-2.5 rounded-lg border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] transition-all"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-          />
-        </svg>
-        <span class="text-sm font-medium text-white/50 group-hover:text-white/80 transition-colors"
-          >Ingresar</span
-        >
-      </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          <span
+            class="text-sm font-medium text-white/50 group-hover:text-white/80 transition-colors"
+            >Ingresar</span
+          >
+        </div>
 
-      <span class="text-white/10">|</span>
+        <span class="hidden md:block text-white/10">|</span>
 
-      <!-- Cart — único acento rojo, bien usado -->
-      <div
-        class="flex items-center gap-2 cursor-pointer flex-shrink-0 px-5 py-2.5 rounded-lg transition-all hover:opacity-90 bg-power-accent"
-        @click="openCarrito"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+        <!-- Cart - desktop -->
+        <div
+          class="hidden md:flex items-center gap-2 cursor-pointer flex-shrink-0 px-5 py-2.5 rounded-lg transition-all hover:opacity-90 bg-power-accent"
+          @click="openCarrito"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-          />
-        </svg>
-        <span class="text-sm font-semibold text-white">Carrito</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <span class="text-sm font-semibold text-white">Carrito</span>
+        </div>
+
+        <!-- Mobile: Search button -->
+        <button
+          class="md:hidden flex items-center justify-center p-2 text-white"
+          @click="toggleMobileSearch"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
+            />
+          </svg>
+        </button>
+
+        <!-- Mobile: Menu button -->
+        <button
+          class="md:hidden flex items-center justify-center p-2 text-white"
+          @click="toggleMobileMenu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -173,8 +221,8 @@
       style="background: linear-gradient(90deg, transparent, #b91c1c, transparent)"
     ></div>
 
-    <!-- Nav bar -->
-    <div class="w-full bg-white">
+    <!-- Nav bar - desktop -->
+    <div class="hidden md:block w-full bg-white">
       <div class="max-w-7xl mx-auto px-6 flex items-center h-11">
         <!-- Categories -->
         <div
@@ -221,10 +269,138 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile search bar -->
+    <div
+      v-if="mobileSearchOpen"
+      class="md:hidden w-full bg-power-primary border-t border-white/10 px-4 py-3"
+    >
+      <div
+        class="flex items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-white/30 flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
+          />
+        </svg>
+        <span class="text-white/30 text-sm flex-1">Buscar productos...</span>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div v-if="mobileMenuOpen" class="md:hidden w-full bg-white border-t border-gray-200">
+      <div class="px-4 py-4">
+        <!-- Mobile nav links -->
+        <nav class="flex flex-col gap-4">
+          <RouterLink
+            to="/"
+            class="text-base font-semibold text-black py-2"
+            @click="toggleMobileMenu"
+            >Inicio</RouterLink
+          >
+          <RouterLink
+            to="/tienda"
+            class="text-base text-gray-600 hover:text-black py-2"
+            @click="toggleMobileMenu"
+            >Tienda</RouterLink
+          >
+          <RouterLink
+            to="/nosotros"
+            class="text-base text-gray-600 hover:text-black py-2"
+            @click="toggleMobileMenu"
+            >Nosotros</RouterLink
+          >
+          <RouterLink
+            to="/contacto"
+            class="text-base text-gray-600 hover:text-black py-2"
+            @click="toggleMobileMenu"
+            >Contacto</RouterLink
+          >
+        </nav>
+
+        <!-- Mobile contact -->
+        <div class="mt-6 pt-4 border-t border-gray-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-gray-500">Contacto:</span>
+            <span class="text-sm font-semibold text-gray-800">314 100 7071</span>
+          </div>
+        </div>
+
+        <!-- Mobile sign in -->
+        <div class="mt-4">
+          <div
+            class="flex items-center justify-center gap-2 cursor-pointer px-4 py-2.5 rounded-lg border border-gray-300 bg-gray-50"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 text-gray-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+            <span class="text-sm font-medium text-gray-600">Ingresar</span>
+          </div>
+        </div>
+
+        <!-- Mobile cart -->
+        <div class="mt-4">
+          <div
+            class="flex items-center justify-center gap-2 cursor-pointer px-4 py-2.5 rounded-lg transition-all hover:opacity-90 bg-power-accent"
+            @click="openCarrito"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            <span class="text-sm font-semibold text-white">Carrito</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useCarrito } from '../stores/carrito.js'
+
 const { openCarrito } = useCarrito()
+const mobileMenuOpen = ref(false)
+const mobileSearchOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+  mobileSearchOpen.value = false
+}
+
+const toggleMobileSearch = () => {
+  mobileSearchOpen.value = !mobileSearchOpen.value
+  mobileMenuOpen.value = false
+}
 </script>

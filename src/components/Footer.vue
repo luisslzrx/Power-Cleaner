@@ -1,13 +1,15 @@
 <template>
   <section class="w-full bg-power-primary font-sans mt-20">
     <!-- Main footer content -->
-    <div class="max-w-7xl mx-auto px-10 py-14 grid grid-cols-4 gap-10">
+    <div
+      class="max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-14 grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-10"
+    >
       <!-- Col 1: Brand -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
         <img
           src="/src/assets/images/logo-power.png"
           alt="Power Cleaner"
-          class="w-36 object-contain"
+          class="w-28 md:w-36 object-contain"
         />
 
         <!-- Social icons -->
@@ -71,7 +73,7 @@
       </div>
 
       <!-- Col 2: Categorías -->
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
         <h4 class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">
           Categorías
         </h4>
@@ -85,7 +87,7 @@
       </div>
 
       <!-- Col 3: Enlaces -->
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
         <h4 class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">Enlaces</h4>
         <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Nosotros</a>
         <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Contacto</a>
@@ -94,7 +96,7 @@
       </div>
 
       <!-- Col 4: Newsletter -->
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
         <h4 class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">
           Newsletter
         </h4>
@@ -118,8 +120,10 @@
 
     <!-- Bottom bar -->
     <div class="border-t border-white/15 bg-black/20">
-      <div class="max-w-7xl mx-auto px-10 py-4 flex items-center justify-between">
-        <p class="text-sm text-white/60">
+      <div
+        class="max-w-7xl mx-auto px-4 md:px-10 py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0"
+      >
+        <p class="text-sm text-white/60 text-center md:text-left">
           Derechos reservados para
           <span class="font-semibold text-white">Power Cleaner</span>
         </p>

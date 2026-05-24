@@ -1,6 +1,6 @@
 <template>
-  <section class="max-w-7xl mx-auto px-6 py-10">
-    <div class="relative w-full overflow-hidden rounded-3xl" style="min-height: 380px">
+  <section class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-10">
+    <div class="relative w-full overflow-hidden rounded-3xl min-h-[350px] md:min-h-[380px]">
       <!-- Background image -->
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -25,29 +25,30 @@
 
       <!-- Content -->
       <div
-        class="relative z-20 max-w-7xl mx-auto px-16 flex items-center h-full"
-        style="min-height: 380px"
+        class="relative z-20 max-w-7xl mx-auto px-4 md:px-16 flex items-center h-full min-h-[350px] md:min-h-[380px]"
       >
-        <div style="max-width: 600px">
+        <div class="max-w-[600px] w-full text-center md:text-left">
           <!-- Eyebrow -->
-          <span class="text-xs font-bold tracking-[0.25em] text-white uppercase mb-4 block">
+          <span class="text-xs font-bold tracking-[0.25em] text-white uppercase mb-3 md:mb-4 block">
             Somos los mejores en México
           </span>
 
           <!-- Title -->
-          <h2 class="text-3xl font-extrabold text-white leading-snug tracking-tight mb-6">
+          <h2
+            class="text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight mb-4 md:mb-6"
+          >
             <span class="text-power-accent">Power Cleaner</span><br />
             Venta de Franquicias a Nivel Nacional
           </h2>
 
           <!-- Subtitle -->
-          <p class="text-sm text-blue-200 leading-relaxed mb-8">
+          <p class="text-xs md:text-sm text-blue-200 leading-relaxed mb-6 md:mb-8">
             Lleva nuestra marca a tu ciudad y forma parte de nuestro éxito.
           </p>
 
           <!-- CTA Button -->
           <button
-            class="flex items-center gap-2 bg-power-accent text-white text-sm font-semibold px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90"
+            class="flex items-center justify-center gap-2 bg-power-accent text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mx-auto md:mx-0"
           >
             Quiero mi franquicia
             <svg
