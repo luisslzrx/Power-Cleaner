@@ -2,13 +2,13 @@
   <section class="w-full font-sans px-8">
     <div
       class="relative w-full overflow-hidden rounded-b-3xl min-h-[580px]"
-      style="
-        min-height: 580px;
-        background-image: url('/images/fondo2.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      "
+      :style="{
+        minHeight: '580px',
+        backgroundImage: `url(${fondo2})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }"
     >
       <!-- Blue overlay -->
       <div class="absolute inset-0 bg-power-primary/60"></div>
@@ -177,5 +177,6 @@
 </template>
 
 <script setup>
+import fondo2 from '@/assets/images/fondo2.png'
 // No functions — design only
 </script>
