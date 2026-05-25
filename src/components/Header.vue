@@ -94,7 +94,7 @@
       class="w-full px-4 md:px-6 py-3 md:py-4 flex items-center justify-between bg-power-primary border-t border-white/10"
     >
       <!-- Logo -->
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 mr-4 md:mr-8">
         <router-link to="/">
           <img
             src="/src/assets/images/icono.png"
@@ -106,7 +106,7 @@
 
       <!-- Search bar - desktop -->
       <div
-        class="hidden md:flex flex-1 items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3 hover:border-white/20 transition-colors"
+        class="hidden md:flex flex-1 items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3 hover:border-white/20 transition-colors mx-4 md:mx-8"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

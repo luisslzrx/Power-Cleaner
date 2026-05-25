@@ -1,30 +1,30 @@
 <template>
-  <section class="w-full bg-white py-10 font-sans">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-2 gap-14 items-start">
+  <section class="w-full bg-white py-6 md:py-10 font-sans">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-14 items-start">
         <!-- LEFT: Galería -->
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-3 md:gap-4">
           <!-- Imagen principal -->
           <div
             class="relative rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden"
-            style="min-height: 360px"
+            style="min-height: 250px md:min-height: 360px"
           >
             <img
               :src="productImage"
               :alt="productName"
-              class="object-contain h-72 w-auto drop-shadow-md"
+              class="object-contain h-48 md:h-72 w-auto drop-shadow-md"
             />
           </div>
 
           <!-- Miniaturas con flechas -->
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 md:gap-3">
             <!-- Flecha izquierda -->
             <button
-              class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center flex-shrink-0 hover:border-blue-400 transition-colors"
+              class="w-7 h-7 md:w-8 md:h-8 rounded-full border border-gray-200 flex items-center justify-center flex-shrink-0 hover:border-blue-400 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 text-gray-400"
+                class="w-3 h-3 md:w-4 md:h-4 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -35,22 +35,22 @@
             </button>
 
             <!-- Thumbnails -->
-            <div class="flex items-center gap-3 flex-1">
+            <div class="flex items-center gap-2 md:gap-3 flex-1">
               <div
                 class="rounded-xl bg-blue-50 flex items-center justify-center overflow-hidden cursor-pointer transition-all border-2 flex-1"
-                style="height: 90px"
+                style="height: 70px md:height: 90px"
               >
-                <img :src="productImage" :alt="productName" class="h-16 object-contain" />
+                <img :src="productImage" :alt="productName" class="h-12 md:h-16 object-contain" />
               </div>
             </div>
 
             <!-- Flecha derecha -->
             <button
-              class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center flex-shrink-0 hover:border-blue-400 transition-colors"
+              class="w-7 h-7 md:w-8 md:h-8 rounded-full border border-gray-200 flex items-center justify-center flex-shrink-0 hover:border-blue-400 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 text-gray-400"
+                class="w-3 h-3 md:w-4 md:h-4 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -63,12 +63,14 @@
         </div>
 
         <!-- RIGHT: Info -->
-        <div class="flex flex-col gap-5 pt-2">
+        <div class="flex flex-col gap-4 md:gap-5 pt-2">
           <!-- Título + badge variante -->
-          <div class="flex items-start justify-between gap-4">
-            <h1 class="text-2xl font-bold text-gray-900 leading-snug">{{ productName }}</h1>
+          <div class="flex items-start justify-between gap-3 md:gap-4">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-900 leading-snug">
+              {{ productName }}
+            </h1>
             <span
-              class="flex-shrink-0 text-sm font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1 rounded-lg"
+              class="flex-shrink-0 text-xs md:text-sm font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2 md:px-3 py-1 rounded-lg"
             >
               Estándar
             </span>
@@ -99,8 +101,10 @@
 
           <!-- Precio -->
           <div class="flex items-baseline gap-1">
-            <span class="text-2xl text-gray-500 font-light">$</span>
-            <span class="text-4xl font-extrabold text-gray-900">{{ productPrice }}</span>
+            <span class="text-xl md:text-2xl text-gray-500 font-light">$</span>
+            <span class="text-3xl md:text-4xl font-extrabold text-gray-900">{{
+              productPrice
+            }}</span>
           </div>
 
           <!-- Features list -->
@@ -223,15 +227,15 @@
           </div>
 
           <!-- Botones CTA -->
-          <div class="flex items-center gap-3 mt-1">
+          <div class="flex flex-col md:flex-row items-center gap-3 mt-1">
             <button
-              class="flex-1 text-white text-sm font-bold py-3 rounded-xl transition-all hover:opacity-90"
+              class="flex-1 text-white text-sm font-bold py-3 px-4 md:px-6 rounded-xl transition-all hover:opacity-90"
               style="background: #1d4e89"
             >
               Comprar ahora
             </button>
             <button
-              class="flex-1 text-blue-600 text-sm font-semibold py-3 rounded-xl border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all"
+              class="flex-1 text-blue-600 text-sm font-semibold py-3 px-4 md:px-6 rounded-xl border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all"
             >
               Añadir al carrito
             </button>
@@ -263,7 +267,6 @@ const productDescription = ref('Cargando...')
 
 // Se ejecuta automáticamente cuando el componente termina de montarse en el DOM
 onMounted(async () => {
-
   // Consulta a Supabase: tabla "productos", trae "name", "price", "image" y "description", donde id coincida con el de la URL, espera un solo resultado
   const { data, error } = await supabase
     .from('productos') // tabla a consultar

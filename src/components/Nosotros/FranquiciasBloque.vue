@@ -1,6 +1,9 @@
 <template>
-  <section class="max-w-7xl mx-auto px-6">
-    <div class="relative overflow-hidden rounded-3xl px-6 py-20" style="background-color: #0b1a2e">
+  <section class="max-w-7xl mx-auto px-4 md:px-6">
+    <div
+      class="relative overflow-hidden rounded-3xl px-4 md:px-6 py-12 md:py-20"
+      style="background-color: #0b1a2e"
+    >
       <!-- Background image -->
       <div
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -24,31 +27,35 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-20 max-w-7xl mx-auto px-16 flex items-center">
-        <div style="max-width: 600px">
+      <div class="relative z-20 max-w-7xl mx-auto px-4 md:px-16 flex items-center">
+        <div class="max-w-[600px] w-full">
           <!-- Columna izquierda: texto y beneficios -->
           <div>
             <!-- Label -->
             <span
-              class="block mb-4 font-sans text-xs font-bold tracking-[0.15em] uppercase text-[#ff5a55]"
+              class="block mb-3 md:mb-4 font-sans text-xs font-bold tracking-[0.15em] uppercase text-[#ff5a55]"
             >
               Franquicias
             </span>
 
             <!-- Título -->
-            <h2 class="mb-6 font-montserrat text-4xl font-extrabold text-white leading-tight">
+            <h2
+              class="mb-4 md:mb-6 font-montserrat text-2xl md:text-4xl font-extrabold text-white leading-tight"
+            >
               Un Negocio Rentable con Respaldo Comprobado
             </h2>
 
             <!-- Descripción -->
-            <p class="mb-8 font-sans text-base font-normal leading-[1.7] text-[#86a0cd]">
+            <p
+              class="mb-6 md:mb-8 font-sans text-sm md:text-base font-normal leading-[1.7] text-[#86a0cd]"
+            >
               Únete a la red de franquicias de Power Cleaner y forma parte de una marca líder en el
               mercado de productos de limpieza. Ofrecemos apoyo total, capacitación continua y
               productos de alta demanda.
             </p>
 
             <!-- Lista de beneficios -->
-            <ul class="flex flex-col gap-3 p-0 m-0 list-none">
+            <ul class="flex flex-col gap-2 md:gap-3 p-0 m-0 list-none">
               <li class="flex items-start gap-3">
                 <img
                   src="/src/assets/icons/check.svg"
@@ -59,7 +66,7 @@
                       brightness(91%) contrast(89%);
                   "
                 />
-                <span class="font-sans text-base text-[#cdd8f0] leading-relaxed">
+                <span class="font-sans text-sm md:text-base text-[#cdd8f0] leading-relaxed">
                   Marca reconocida y líder en el mercado.
                 </span>
               </li>
@@ -74,7 +81,7 @@
                       brightness(91%) contrast(89%);
                   "
                 />
-                <span class="font-sans text-base text-[#cdd8f0] leading-relaxed">
+                <span class="font-sans text-sm md:text-base text-[#cdd8f0] leading-relaxed">
                   Alta rentabilidad con productos de alta demanda.
                 </span>
               </li>
@@ -89,7 +96,7 @@
                       brightness(91%) contrast(89%);
                   "
                 />
-                <span class="font-sans text-base text-[#cdd8f0] leading-relaxed">
+                <span class="font-sans text-sm md:text-base text-[#cdd8f0] leading-relaxed">
                   Apoyo total: capacitación, publicidad y asesoría continua.
                 </span>
               </li>
@@ -104,7 +111,7 @@
                       brightness(91%) contrast(89%);
                   "
                 />
-                <span class="font-sans text-base text-[#cdd8f0] leading-relaxed">
+                <span class="font-sans text-sm md:text-base text-[#cdd8f0] leading-relaxed">
                   Productos de calidad con fórmulas efectivas y confiables.
                 </span>
               </li>
@@ -119,7 +126,7 @@
                       brightness(91%) contrast(89%);
                   "
                 />
-                <span class="font-sans text-base text-[#cdd8f0] leading-relaxed">
+                <span class="font-sans text-sm md:text-base text-[#cdd8f0] leading-relaxed">
                   Presencia en todo México con franquicias disponibles.
                 </span>
               </li>
@@ -127,7 +134,7 @@
 
             <!-- CTA Button -->
             <button
-              class="flex items-center gap-2 bg-power-accent text-white text-sm font-semibold px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mt-8"
+              class="flex items-center gap-2 bg-power-accent text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mt-6 md:mt-8"
             >
               Quiero mi franquicia
               <svg

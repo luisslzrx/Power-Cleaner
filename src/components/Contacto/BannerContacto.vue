@@ -1,9 +1,9 @@
 <template>
   <!-- Hero Section: Nuestra Misión -->
-  <section class="w-full font-sans px-8">
+  <section class="w-full font-sans px-4 md:px-8">
     <div
-      class="relative w-full overflow-hidden rounded-b-3xl bg-cover bg-center bg-no-repeat"
-      :style="{ minHeight: '580px', backgroundImage: `url(${fondo4})` }"
+      class="relative w-full overflow-hidden rounded-b-3xl bg-cover bg-center bg-no-repeat min-h-[400px] md:min-h-[580px]"
+      :style="{ backgroundImage: `url(${fondo4})` }"
     >
       <!-- Blue overlay -->
       <div class="absolute inset-0 bg-power-primary/90"></div>
@@ -23,25 +23,26 @@
 
       <!-- Content -->
       <div
-        class="relative z-20 max-w-7xl mx-auto px-16 flex items-center h-full"
-        style="min-height: 580px"
+        class="relative z-20 max-w-7xl mx-auto px-4 md:px-16 flex items-center h-full min-h-[400px] md:min-h-[580px]"
       >
-        <div class="max-w-[600px]">
+        <div class="max-w-[600px] w-full">
           <!-- Label -->
           <span
-            class="inline-block uppercase tracking-widest mb-4 text-xs font-bold text-[#ff5a55]"
+            class="inline-block uppercase tracking-widest mb-3 md:mb-4 text-xs font-bold text-[#ff5a55]"
           >
             Contacto
           </span>
 
           <!-- Headline -->
-          <h1 class="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-white">
+          <h1
+            class="mb-4 md:mb-6 text-3xl md:text-5xl font-extrabold leading-[1.1] md:leading-[1.1] tracking-tight text-white"
+          >
             Estamos aquí para
             <span class="text-[#ff5a55]">ayudarte</span>
           </h1>
 
           <!-- Body text -->
-          <p class="mb-8 text-lg font-normal leading-relaxed text-[#86a0cd]">
+          <p class="mb-6 md:mb-8 text-sm md:text-lg font-normal leading-relaxed text-[#86a0cd]">
             ¿Tienes preguntas sobre nuestros productos, necesitas una cotización o quieres conocer
             más sobre nuestras franquicias? Nuestro equipo está listo para atenderte y brindarte la
             mejor solución para tus necesidades de limpieza profesional.
@@ -50,7 +51,7 @@
           <!-- CTA Button -->
           <div class="flex gap-4">
             <button
-              class="flex items-center gap-2 text-white text-sm font-semibold px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 bg-[#b91c1c]"
+              class="flex items-center gap-2 text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 bg-[#b91c1c]"
             >
               Contáctanos
               <svg

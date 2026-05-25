@@ -1,28 +1,28 @@
 <template>
   <!-- Contacto Section -->
   <section>
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
       <!-- Header row -->
       <div class="flex items-center justify-between mb-1">
-        <h2 class="text-xl font-semibold text-power-primary">
+        <h2 class="text-lg md:text-xl font-semibold text-power-primary">
           Contactanos <span class="text-power-accent"> en Power Cleaner</span>
         </h2>
       </div>
 
       <!-- Underline -->
-      <div class="w-full h-px bg-blue-500 mb-6"></div>
+      <div class="w-full h-px bg-blue-500 mb-4 md:mb-6"></div>
 
-      <div class="flex gap-20 items-center">
+      <div class="flex flex-col md:flex-row gap-8 md:gap-20 items-center">
         <!-- Columna izquierda: Find us here -->
-        <div class="flex-1">
+        <div class="w-full md:flex-1">
           <!-- Dirección -->
-          <div class="flex items-center gap-5 mb-8">
+          <div class="flex items-center gap-3 md:gap-5 mb-6 md:mb-8">
             <div
-              class="w-13 h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
+              class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[22px] h-[22px] text-white"
+                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -41,21 +41,21 @@
               </svg>
             </div>
             <div>
-              <p class="text-sm font-bold text-[#0b1a2e] mb-1">Dirección:</p>
-              <p class="text-sm text-[#43474e] leading-[1.5]">
+              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Dirección:</p>
+              <p class="text-xs md:text-sm text-[#43474e] leading-[1.5]">
                 Av. Insurgentes Sur 1234, Col. Del Valle, CDMX, México.
               </p>
             </div>
           </div>
 
           <!-- Email -->
-          <div class="flex items-center gap-5 mb-8">
+          <div class="flex items-center gap-3 md:gap-5 mb-6 md:mb-8">
             <div
-              class="w-13 h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
+              class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[22px] h-[22px] text-white"
+                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -69,19 +69,19 @@
               </svg>
             </div>
             <div>
-              <p class="text-sm font-bold text-[#0b1a2e] mb-1">Email:</p>
-              <p class="text-sm text-[#43474e]">contacto@powercleaner.mx</p>
+              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Email:</p>
+              <p class="text-xs md:text-sm text-[#43474e]">contacto@powercleaner.mx</p>
             </div>
           </div>
 
           <!-- Teléfono -->
-          <div class="flex items-center gap-5 mb-12">
+          <div class="flex items-center gap-3 md:gap-5 mb-8 md:mb-12">
             <div
-              class="w-13 h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
+              class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[22px] h-[22px] text-white"
+                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -95,26 +95,26 @@
               </svg>
             </div>
             <div>
-              <p class="text-sm font-bold text-[#0b1a2e] mb-1">Teléfono:</p>
-              <p class="text-sm text-[#43474e]">314 100 7071</p>
+              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Teléfono:</p>
+              <p class="text-xs md:text-sm text-[#43474e]">314 100 7071</p>
             </div>
           </div>
 
           <!-- Descripción -->
-          <p class="text-sm text-[#74777f] leading-[1.7] mb-10">
+          <p class="text-xs md:text-sm text-[#74777f] leading-[1.7] mb-6 md:mb-10">
             En Power Cleaner estamos listos para atenderte. Ya sea que necesites asesoría sobre
             nuestros productos, cotizar un pedido mayorista o explorar oportunidades de franquicia,
             nuestro equipo está disponible para ti.
           </p>
 
           <!-- Redes sociales -->
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-3 md:gap-4">
             <div
-              class="w-10 h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[18px] h-[18px] text-white"
+                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -128,11 +128,11 @@
               </svg>
             </div>
             <div
-              class="w-10 h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[18px] h-[18px] text-white"
+                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -146,11 +146,11 @@
               </svg>
             </div>
             <div
-              class="w-10 h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[18px] h-[18px] text-white"
+                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -169,11 +169,11 @@
               </svg>
             </div>
             <div
-              class="w-10 h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-[18px] h-[18px] text-white"
+                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -195,11 +195,13 @@
         </div>
 
         <!-- Columna derecha: formulario -->
-        <div class="flex-1">
-          <h3 class="text-2xl font-bold text-[#0b1a2e] mb-6">Déjanos un mensaje</h3>
+        <div class="w-full md:flex-1">
+          <h3 class="text-xl md:text-2xl font-bold text-[#0b1a2e] mb-4 md:mb-6">
+            Déjanos un mensaje
+          </h3>
 
           <!-- Nombre y Email -->
-          <div class="grid grid-cols-2 gap-5 mb-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-4 md:mb-5">
             <div>
               <label class="block text-sm font-semibold text-[#0b1a2e] mb-2">
                 Nombre <span class="text-[#b52426]">*</span>
@@ -242,7 +244,7 @@
 
           <!-- Botón -->
           <button
-            class="py-[18px] px-12 bg-power-accent text-white border-none rounded-lg text-xs font-bold tracking-[0.1em] cursor-pointer"
+            class="py-3 md:py-[18px] px-8 md:px-12 bg-power-accent text-white border-none rounded-lg text-xs font-bold tracking-[0.1em] cursor-pointer"
           >
             ENVIAR MENSAJE
           </button>
