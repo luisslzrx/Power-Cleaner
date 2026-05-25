@@ -43,7 +43,8 @@
             <div>
               <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Dirección:</p>
               <p class="text-xs md:text-sm text-[#43474e] leading-[1.5]">
-                Av. Insurgentes Sur 1234, Col. Del Valle, CDMX, México.
+                Av. Benito Juárez No. 794, esquina con José de Ruiz, Col. Jardines de la Villa,
+                Villa de Álvarez, Colima, México.
               </p>
             </div>
           </div>
@@ -96,7 +97,7 @@
             </div>
             <div>
               <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Teléfono:</p>
-              <p class="text-xs md:text-sm text-[#43474e]">314 100 7071</p>
+              <p class="text-xs md:text-sm text-[#43474e]">+52 33 1840 0789</p>
             </div>
           </div>
 

@@ -265,7 +265,7 @@
         <!-- Contact -->
         <div class="flex items-center gap-2 pl-8 flex-shrink-0">
           <span class="text-xs text-gray-500">Contacto:</span>
-          <span class="text-sm font-semibold text-gray-800">314 100 7071</span>
+          <span class="text-sm font-semibold text-gray-800">+52 33 1840 0789</span>
         </div>
       </div>
     </div>
@@ -331,7 +331,7 @@
         <div class="mt-6 pt-4 border-t border-gray-200">
           <div class="flex items-center gap-2">
             <span class="text-xs text-gray-500">Contacto:</span>
-            <span class="text-sm font-semibold text-gray-800">314 100 7071</span>
+            <span class="text-sm font-semibold text-gray-800">+52 33 1840 0789</span>
           </div>
         </div>
 
