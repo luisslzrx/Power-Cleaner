@@ -21,7 +21,7 @@
         ></div>
         <img
           class="w-full h-full object-cover"
-          src="/src/assets/images/sucursal1.png"
+          src="/src/assets/images/franquicias.webp"
           alt="Sucursal Power Cleaner"
         />
       </div>

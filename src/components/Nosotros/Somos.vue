@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import productoPowerClean from '@/assets/images/producto-power-clean.png'
+import productoPowerClean from '@/assets/images/producto-power-clean.webp'
 const features = [
   'Fórmula Americana',
   'Fabricación propia',

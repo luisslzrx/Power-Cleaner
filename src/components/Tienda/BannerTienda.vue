@@ -16,7 +16,7 @@
         ></div>
         <img
           class="w-full h-full object-cover"
-          src="/src/assets/images/sucursal1.png"
+          src="/src/assets/images/tienda-power-cleaner.webp"
           alt="Laboratorio de limpieza profesional"
         />
       </div>
