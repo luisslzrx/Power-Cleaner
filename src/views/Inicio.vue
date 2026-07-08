@@ -9,6 +9,7 @@ import Beneficios from '@/components/Inicio/Beneficios.vue'
 import Categorias from '@/components/Inicio/Categorias.vue'
 import Franquicias from '@/components/Inicio/Franquicias.vue'
 import ProductosMayoreo from '@/components/Inicio/ProductosMayoreo.vue'
+import ProductosPaquetes from '@/components/Inicio/ProductosPaquetes.vue'
 </script>
 
 <template>
@@ -16,6 +17,7 @@ import ProductosMayoreo from '@/components/Inicio/ProductosMayoreo.vue'
     <Hero />
     <Bar />
     <ProductosDestacados class="my-16" />
+    <ProductosPaquetes class="my-16" />
     <Categorias class="my-16" />
     <ProductosRecientes class="my-16" />
     <Testimoniales class="my-16" />

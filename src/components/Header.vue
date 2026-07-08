@@ -104,52 +104,12 @@
         </router-link>
       </div>
 
-      <!-- Search bar - desktop -->
-      <div
-        class="hidden md:flex flex-1 items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3 hover:border-white/20 transition-colors mx-4 md:mx-8"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 text-white/30 flex-shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-          />
-        </svg>
-        <span class="text-white/30 text-sm flex-1">Buscar productos de limpieza...</span>
-      </div>
+      <BuscadorProductos />
 
       <!-- Right side: Sign In, Cart, Mobile buttons -->
       <div class="flex items-center gap-2 md:gap-4">
         <!-- Sign In - desktop -->
-        <div
-          class="hidden md:flex items-center gap-2 cursor-pointer group flex-shrink-0 px-4 py-2.5 rounded-lg border border-white/10 hover:border-white/20 bg-white/[0.04] hover:bg-white/[0.08] transition-all"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-          <span
-            class="text-sm font-medium text-white/50 group-hover:text-white/80 transition-colors"
-            >Ingresar</span
-          >
-        </div>
+        <Login />
 
         <span class="hidden md:block text-white/10">|</span>
 
@@ -225,21 +185,7 @@
     <div class="hidden md:block w-full bg-white">
       <div class="max-w-7xl mx-auto px-6 flex items-center h-11">
         <!-- Categories -->
-        <div
-          class="flex items-center gap-2 pr-6 border-r border-gray-200 cursor-pointer flex-shrink-0 hover:opacity-70 transition-opacity"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-gray-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <span class="text-sm font-medium text-gray-700">Categorías</span>
-        </div>
+        <CategoriasMenu />
 
         <!-- Nav links -->
         <nav class="flex items-center gap-7 px-8">
@@ -387,10 +333,15 @@
 </template>
 
 <script setup>
+import BuscadorProductos from './Header/BuscadorProductos.vue'
+import CategoriasMenu from './Header/CategoriasMenu.vue'
+import Login from './Header/Login.vue'
+
 import { ref } from 'vue'
 import { useCarrito } from '../stores/carrito.js'
 
 const { openCarrito } = useCarrito()
+
 const mobileMenuOpen = ref(false)
 const mobileSearchOpen = ref(false)
 

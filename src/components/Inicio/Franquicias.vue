@@ -47,7 +47,8 @@
           </p>
 
           <!-- CTA Button -->
-          <button
+          <RouterLink
+            to="/venta-de-franquicias"
             class="flex items-center justify-center gap-2 bg-power-accent text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mx-auto md:mx-0"
           >
             Quiero mi franquicia
@@ -61,7 +62,7 @@
             >
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </button>
+          </RouterLink>
         </div>
       </div>
     </div>

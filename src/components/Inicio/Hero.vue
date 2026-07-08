@@ -52,15 +52,18 @@
         <div
           class="flex flex-col gap-4 md:gap-6 z-10 max-w-lg w-full text-center md:text-left order-2 md:order-1"
         >
-          <span class="text-xs font-semibold tracking-[0.25em] text-white/80 uppercase">
+          <h2 class="text-lg font-semibold tracking-[0.25em] text-white/80 uppercase">
             Power Cleaner
-          </span>
+          </h2>
 
-          <h1 class="font-extrabold leading-none tracking-tight text-2xl md:text-[3.4rem]">
-            <span class="text-white">LIMPIEZA</span><br />
-            <span style="color: #b91c1c">PREMIUM</span><br />
-            <span class="text-white">PARA TU HOGAR</span>
+          <h1 class="font-extrabold leading-none tracking-tight text-2xl md:text-[4.5rem]">
+            <span class="text-white">El poder de</span><br />
+            <span style="color: #b91c1c">la limpieza</span>
           </h1>
+
+          <p class="text-sm md:text-base font-medium text-white/90 leading-relaxed">
+            SOLUCIONES PROFESIONALES PARA EMPRESAS QUE EXIGEN RESULTADOS
+          </p>
 
           <div class="flex items-center gap-1 justify-center md:justify-start">
             <span v-for="i in 5" :key="i" class="text-white text-base">★</span>

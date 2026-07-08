@@ -2,15 +2,17 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Carrito from './components/Carrito.vue'
+import WhatsAppButton from './components/WhatsAppButton.vue'
 </script>
 
 <template>
   <Header />
   <div class="app-container">
-    <router-view :key="$route.fullPath" />
+    <router-view />
   </div>
   <Footer />
   <Carrito />
+  <WhatsAppButton />
 </template>
 
 <style>
@@ -24,7 +26,6 @@ import Carrito from './components/Carrito.vue'
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;

@@ -6,8 +6,8 @@
         <h2 class="text-lg md:text-2xl font-semibold text-power-primary">
           Todo en limpieza en <span class="text-power-accent">un solo lugar</span>
         </h2>
-        <a
-          href="#"
+        <RouterLink
+          to="/tienda"
           class="flex items-center gap-1 text-xs md:text-sm text-gray-500 hover:text-power-blue transition-colors"
         >
           Ver más
@@ -21,7 +21,7 @@
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>
-        </a>
+        </RouterLink>
       </div>
 
       <!-- Underline -->

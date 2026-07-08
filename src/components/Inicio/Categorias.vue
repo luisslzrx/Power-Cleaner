@@ -23,10 +23,8 @@
           </svg>
         </a>
       </div>
-
       <!-- Underline -->
       <div class="w-full h-px bg-blue-500 mb-4 md:mb-6"></div>
-
       <!-- Brand cards/carrusel -->
       <div
         class="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
@@ -45,7 +43,6 @@
             class="absolute right-2 top-1 size-32 md:size-40 rounded-full"
             style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(185, 28, 28, 0.08)"
           ></div>
-
           <!-- Left content -->
           <div
             class="flex flex-col justify-between h-full z-10 gap-3 md:gap-4"
@@ -73,7 +70,6 @@
               </p>
             </div>
           </div>
-
           <!-- Product image -->
           <div class="absolute -right-4 bottom-0 h-40 md:h-56 z-10">
             <img
@@ -83,7 +79,6 @@
             />
           </div>
         </div>
-
         <!-- Card 2 -->
         <div
           class="relative rounded-2xl overflow-hidden flex items-end justify-between p-4 md:p-6 bg-gradient-to-br from-power-primary to-power-secondary min-h-[180px] md:min-h-[220px] shrink-0 w-full md:w-auto snap-start"
@@ -98,7 +93,6 @@
             class="absolute right-2 top-1 size-32 md:size-40 rounded-full"
             style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(185, 28, 28, 0.08)"
           ></div>
-
           <!-- Left content -->
           <div
             class="flex flex-col justify-between h-full z-10 gap-3 md:gap-4"
@@ -126,7 +120,6 @@
               </p>
             </div>
           </div>
-
           <!-- Product image -->
           <div class="absolute -right-4 bottom-0 h-40 md:h-56 z-10">
             <img
@@ -136,7 +129,6 @@
             />
           </div>
         </div>
-
         <!-- Card 3 -->
         <div
           class="relative rounded-2xl overflow-hidden flex items-end justify-between p-4 md:p-6 bg-gradient-to-br from-power-primary to-power-secondary min-h-[180px] md:min-h-[220px] shrink-0 w-full md:w-auto snap-start"
@@ -151,7 +143,6 @@
             class="absolute right-2 top-1 size-32 md:size-40 rounded-full"
             style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(185, 28, 28, 0.08)"
           ></div>
-
           <!-- Left content -->
           <div
             class="flex flex-col justify-between h-full z-10 gap-3 md:gap-4"
@@ -179,7 +170,6 @@
               </p>
             </div>
           </div>
-
           <!-- Product image -->
           <div class="absolute -right-4 bottom-0 h-40 md:h-56 z-10">
             <img
@@ -190,31 +180,17 @@
           </div>
         </div>
       </div>
-
-      <!-- Dots -->
-      <div class="flex items-center justify-center gap-2 mt-4 md:mt-6">
-        <span class="w-6 h-2 rounded-full bg-blue-500 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-        <span class="w-2 h-2 rounded-full bg-gray-300 cursor-pointer"></span>
-      </div>
     </div>
   </section>
 </template>
-
 <script setup>
 // No functions — design only
 </script>
-
 <style scoped>
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

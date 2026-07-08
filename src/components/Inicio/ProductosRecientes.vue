@@ -6,8 +6,8 @@
         <h2 class="text-lg md:text-xl font-semibold text-power-primary">
           Nuevas soluciones <span class="text-power-accent">de limpieza</span>
         </h2>
-        <a
-          href="#"
+        <RouterLink
+          to="/tienda"
           class="flex items-center gap-1 text-xs md:text-sm text-gray-500 hover:text-teal-500 transition-colors"
         >
           Ver todo
@@ -21,7 +21,7 @@
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>
-        </a>
+        </RouterLink>
       </div>
 
       <!-- Underline -->

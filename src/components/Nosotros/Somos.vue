@@ -1,3 +1,4 @@
+```vue
 <template>
   <section class="w-full">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
@@ -21,7 +22,7 @@
           <div class="flex items-center gap-3">
             <div class="w-6 h-px" style="background: #b91c1c"></div>
             <span class="text-xs font-semibold tracking-[0.25em] text-gray-400 uppercase"
-              >Power Cleaner · México</span
+              >Power Cleaner · Quiénes somos</span
             >
             <div class="w-6 h-px" style="background: #b91c1c"></div>
           </div>
@@ -31,32 +32,31 @@
             <h3
               class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight tracking-tight"
             >
-              Fabricantes de
-              <span style="color: #1d4e89"> productos de limpieza</span>
-              <br />de alta calidad
+              Soluciones profesionales en
+              <span style="color: #1d4e89"> productos de limpieza</span> de alto rendimiento
             </h3>
           </div>
 
           <!-- Párrafos -->
           <div class="flex flex-col gap-3 md:gap-4">
             <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
-              En Power Cleaner somos una empresa especializada en la fabricación y distribución de
-              productos de limpieza de alta calidad, diseñados para ofrecer eficiencia, rendimiento
-              y confianza en cada uso.
+              En Power Cleaner somos una empresa manufacturera con más de 5 años de experiencia en
+              el desarrollo, producción y comercialización de productos de limpieza de alto
+              rendimiento.
             </p>
             <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
-              Trabajamos con fórmulas mejoradas y procesos enfocados en la calidad, brindando
-              soluciones para hogares, negocios e industrias que buscan productos efectivos y
-              confiables.
+              Nos especializamos en crear soluciones efectivas para empresas que buscan calidad,
+              eficiencia y resultados profesionales en cada proceso de limpieza.
             </p>
             <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
-              Además de nuestra línea de limpieza, contamos con productos automotrices y artículos
-              complementarios, ofreciendo una solución integral para distintas necesidades.
+              Cada producto está diseñado para brindar confianza, rendimiento y practicidad,
+              ayudando a hogares, negocios e industrias a mantener espacios más limpios, seguros y
+              presentables.
             </p>
             <p class="text-xs md:text-sm text-gray-500 leading-relaxed">
-              Nuestro compromiso es seguir creciendo e innovando, con una visión enfocada en
-              expandir nuestra presencia a nivel nacional e internacional, manteniendo siempre la
-              calidad y satisfacción de nuestros clientes.
+              Nuestro compromiso es construir relaciones sólidas y duraderas con nuestros clientes,
+              ofreciendo productos confiables, atención cercana y soluciones adaptadas a sus
+              necesidades.
             </p>
           </div>
 
@@ -87,7 +87,7 @@
             class="self-start flex items-center gap-2 text-white text-sm font-semibold px-5 md:px-7 py-3 rounded-lg transition-all hover:opacity-90"
             style="background: #b91c1c"
           >
-            Ver nuestros productos
+            Conoce nuestros productos
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4"
@@ -108,11 +108,12 @@
 <script setup>
 import productoPowerClean from '@/assets/images/producto-power-clean.webp'
 const features = [
-  'Fórmula Americana',
-  'Fabricación propia',
-  'Distribución nacional',
-  'Línea automotriz',
-  'Mayoreo y menudeo',
-  'Más de 15 años de experiencia',
+  'Más de 5 años de experiencia',
+  'Productos de alto rendimiento',
+  'Soluciones para empresas',
+  'Calidad profesional',
+  'Compromiso con el cliente',
+  'Confianza y resultados',
 ]
 </script>
+```

@@ -37,16 +37,26 @@ const router = createRouter({
       name: 'Contacto',
       component: () => import('@/views/Contacto.vue'),
     },
+
+    {
+      path: '/success',
+      name: 'success',
+      component: () => import('../views/SuccessView.vue'),
+    },
+    {
+      path: '/venta-de-franquicias',
+      name: 'VentaDeFranquicias',
+      component: () => import('../views/VentaDeFranquicias.vue'),
+    },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: () => import('../views/AuthView.vue'),
+    },
   ],
 
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    }
-
-    return {
-      top: 0,
-    }
+  scrollBehavior() {
+    return { top: 0 }
   },
 })
 

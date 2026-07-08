@@ -77,22 +77,32 @@
         <h4 class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">
           Categorías
         </h4>
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors"
-          >Productos de limpieza</a
+        <RouterLink to="/tienda" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Productos de limpieza</RouterLink
         >
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors"
-          >Limpieza del hogar</a
+        <RouterLink to="/tienda" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Limpieza del hogar</RouterLink
         >
-        <a href="#" class="text-sm text-white underline underline-offset-2">Línea automotriz</a>
+        <RouterLink to="/tienda" class="text-sm text-white underline underline-offset-2"
+          >Línea automotriz</RouterLink
+        >
       </div>
 
       <!-- Col 3: Enlaces -->
       <div class="flex flex-col items-center md:items-start gap-3 text-center md:text-left">
         <h4 class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-1">Enlaces</h4>
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Nosotros</a>
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Contacto</a>
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Tienda</a>
-        <a href="#" class="text-sm text-white/80 hover:text-white transition-colors">Servicios</a>
+        <RouterLink to="/nosotros" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Nosotros</RouterLink
+        >
+        <RouterLink to="/contacto" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Contacto</RouterLink
+        >
+        <RouterLink to="/tienda" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Tienda</RouterLink
+        >
+        <RouterLink to="/servicios" class="text-sm text-white/80 hover:text-white transition-colors"
+          >Servicios</RouterLink
+        >
       </div>
 
       <!-- Col 4: Newsletter -->

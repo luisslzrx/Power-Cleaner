@@ -1,210 +1,387 @@
 <template>
-  <section class="w-full bg-white py-6 md:py-10 font-sans min-h-screen">
+  <section class="py-10">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
-      <!-- Título y ordenamiento -->
-      <div class="mb-6 md:mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Nuestra Tienda</h1>
-        <div class="flex items-center gap-2">
-          <label class="text-sm text-gray-600">Ordenar por:</label>
-          <div class="relative">
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-bold text-power-primary">
+          Productos por <span class="text-power-accent">categoría</span>
+        </h2>
+        <div class="w-full h-px bg-blue-500 mt-2"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-5">
+            <p class="text-sm text-gray-500">{{ sortedProducts.length }} productos encontrados</p>
+
             <select
-              v-model="sortBy"
-              class="px-3 py-2 pr-8 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500 appearance-none cursor-pointer"
+              v-model="selectedOrder"
+              class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 outline-none focus:border-power-primary"
             >
-              <option value="default">Relevancia</option>
-              <option value="price-asc">Precio: Menor a Mayor</option>
-              <option value="price-desc">Precio: Mayor a Menor</option>
-              <option value="name-asc">Nombre: A-Z</option>
-              <option value="name-desc">Nombre: Z-A</option>
+              <option value="default">Ordenar</option>
+              <option value="price-asc">Más barato</option>
+              <option value="price-desc">Más caro</option>
+              <option value="name-asc">Nombre A-Z</option>
+              <option value="name-desc">Nombre Z-A</option>
             </select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 text-gray-500 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Loading -->
-      <div v-if="loading" class="flex items-center justify-center py-20">
-        <p class="text-gray-500">Cargando productos...</p>
-      </div>
-
-      <!-- Error -->
-      <div v-else-if="error" class="flex items-center justify-center py-20">
-        <p class="text-red-500">{{ error }}</p>
-      </div>
-
-      <!-- Contenedor principal con filtros y productos -->
-      <div v-else class="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
-        <!-- Columna izquierda: Filtros -->
-        <div class="lg:col-span-1 hidden lg:block">
-          <div class="bg-gray-50 rounded-lg p-6 sticky top-4">
-            <!-- Filtro de categorías -->
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Categorías</h3>
-              <div class="space-y-2">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 text-red-600 rounded" />
-                  <span class="text-sm text-gray-700">Limpieza de Hogar</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 text-red-600 rounded" />
-                  <span class="text-sm text-gray-700">Limpieza Industrial</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 text-red-600 rounded" />
-                  <span class="text-sm text-gray-700">Automotriz</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 text-red-600 rounded" />
-                  <span class="text-sm text-gray-700">Desinfectantes</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Filtro de precios -->
-            <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Precio</h3>
-              <div class="space-y-4">
-                <div>
-                  <label class="text-sm text-gray-600 mb-1 block">Precio mínimo</label>
-                  <input
-                    v-model.number="priceMin"
-                    type="number"
-                    placeholder="0"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <div>
-                  <label class="text-sm text-gray-600 mb-1 block">Precio máximo</label>
-                  <input
-                    v-model.number="priceMax"
-                    type="number"
-                    placeholder="1000"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <button
-                  @click="applyPriceFilter"
-                  class="w-full bg-red-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
-                >
-                  Aplicar filtro
-                </button>
-                <button
-                  @click="clearPriceFilter"
-                  class="w-full bg-gray-200 text-gray-700 py-2 rounded-lg text-sm font-semibold hover:bg-gray-300 transition-colors"
-                >
-                  Limpiar filtro
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna derecha: Grid de productos -->
-        <div class="lg:col-span-3 col-span-1">
-          <!-- Sin productos -->
-          <div v-if="filteredProducts.length === 0" class="flex items-center justify-center py-20">
-            <p class="text-gray-500">No hay productos disponibles</p>
           </div>
 
-          <!-- Grid de productos -->
-          <div v-else class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div
+            v-if="sortedProducts.length > 0"
+            class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5"
+          >
             <ProductoCard
-              v-for="product in filteredProducts"
+              v-for="product in paginatedProducts"
               :key="product.id"
               :product="product"
             />
           </div>
+
+          <!-- Paginación -->
+          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8">
+            <button
+              @click="prevPage"
+              :disabled="currentPage === 1"
+              class="px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Anterior
+            </button>
+
+            <template v-for="(page, idx) in visiblePages" :key="idx">
+              <span
+                v-if="page === '...'"
+                class="px-2 py-2 text-gray-400 text-sm select-none"
+              >
+                ...
+              </span>
+              <button
+                v-else
+                @click="goToPage(page)"
+                class="px-3 py-2 rounded-lg border text-sm transition-colors"
+                :class="
+                  currentPage === page
+                    ? 'bg-power-primary text-white border-power-primary'
+                    : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+                "
+              >
+                {{ page }}
+              </button>
+            </template>
+
+            <button
+              @click="nextPage"
+              :disabled="currentPage === totalPages"
+              class="px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Siguiente
+            </button>
+          </div>
+
+          <div
+            v-else
+            class="bg-gray-50 border border-gray-100 rounded-2xl p-8 text-center text-gray-500"
+          >
+            No hay productos con estos filtros.
+          </div>
         </div>
+
+        <aside class="lg:order-last order-first">
+          <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm sticky top-24">
+            <h3 class="text-sm font-bold text-gray-800 mb-4">Filtrar productos</h3>
+
+            <div class="mb-5">
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">
+                Departamento
+              </p>
+
+              <div class="flex flex-col gap-2">
+                <button
+                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
+                  :class="
+                    selectedDepartment === 'all'
+                      ? 'bg-power-primary text-white font-semibold'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                  "
+                  @click="clearDepartment"
+                >
+                  Todos
+                </button>
+
+                <button
+                  v-for="department in departments"
+                  :key="department"
+                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
+                  :class="
+                    selectedDepartment === department
+                      ? 'bg-power-primary text-white font-semibold'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                  "
+                  @click="selectDepartment(department)"
+                >
+                  {{ department }}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Categoría</p>
+
+              <div class="flex flex-col gap-2">
+                <button
+                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
+                  :class="
+                    selectedCategory === 'all'
+                      ? 'bg-power-primary text-white font-semibold'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                  "
+                  @click="clearCategory"
+                >
+                  Todas
+                </button>
+
+                <button
+                  v-for="category in availableCategories"
+                  :key="category"
+                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
+                  :class="
+                    selectedCategory === category
+                      ? 'bg-power-primary text-white font-semibold'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                  "
+                  @click="selectCategory(category)"
+                >
+                  {{ category }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../../supabase'
 import ProductoCard from '@/components/Inicio/ProductoCard.vue'
 
+const route = useRoute()
+const router = useRouter()
+
 const products = ref([])
-const loading = ref(true)
-const error = ref(null)
-const priceMin = ref(null)
-const priceMax = ref(null)
-const sortBy = ref('default')
 
-const filteredProducts = computed(() => {
-  let result = products.value
-
-  console.log('SORT BY:', sortBy.value)
-  console.log('PRODUCTS BEFORE SORT:', result.length)
-
-  // Filtrar por precio
-  if (priceMin.value || priceMax.value) {
-    result = result.filter((product) => {
-      const price = product.precio || 0
-      const min = priceMin.value || 0
-      const max = priceMax.value || Infinity
-
-      return price >= min && price <= max
-    })
-  }
-
-  // Ordenar
-  if (sortBy.value === 'price-asc') {
-    result = [...result].sort((a, b) => (a.precio || 0) - (b.precio || 0))
-    console.log('ORDENADO POR PRECIO ASC')
-  } else if (sortBy.value === 'price-desc') {
-    result = [...result].sort((a, b) => (b.precio || 0) - (a.precio || 0))
-    console.log('ORDENADO POR PRECIO DESC')
-  } else if (sortBy.value === 'name-asc') {
-    result = [...result].sort((a, b) => (a.nombre || '').localeCompare(b.nombre || ''))
-    console.log('ORDENADO POR NOMBRE ASC')
-  } else if (sortBy.value === 'name-desc') {
-    result = [...result].sort((a, b) => (b.nombre || '').localeCompare(a.nombre || ''))
-    console.log('ORDENADO POR NOMBRE DESC')
-  }
-
-  console.log('PRODUCTS AFTER SORT:', result.length)
-  return result
-})
+const selectedDepartment = ref(route.query.department || 'all')
+const selectedCategory = ref(route.query.category || 'all')
+const selectedOrder = ref('default')
+const currentPage = ref(1)
+const itemsPerPage = 12
 
 const getProducts = async () => {
-  const { data, error: fetchError } = await supabase.from('productos').select('*')
+  const { data, error } = await supabase
+    .from('productos')
+    .select('*')
+    .order('id', { ascending: true })
 
-  console.log('DATA:', data)
-  console.log('ERROR:', fetchError)
-
-  if (data && data.length > 0) {
-    console.log('PRIMER PRODUCTO:', data[0])
+  if (error) {
+    console.error('Error al cargar productos:', error)
+    return
   }
 
-  if (fetchError) {
-    error.value = 'Error al cargar los productos'
-    console.error(fetchError)
-  } else {
-    products.value = data || []
+  const groupedProducts = Object.values(
+    (data || []).reduce((acc, product) => {
+      const key = product.parent_sku || product.sku || product.id
+
+      if (!acc[key]) {
+        acc[key] = product
+      }
+
+      // Si hay variantes, muestra como principal la más barata
+      if (Number(product.price) < Number(acc[key].price)) {
+        acc[key] = product
+      }
+
+      return acc
+    }, {}),
+  )
+
+  products.value = groupedProducts
+}
+
+const departments = computed(() => {
+  return [...new Set(products.value.map((product) => product.department).filter(Boolean))]
+})
+
+const categories = computed(() => {
+  return [...new Set(products.value.map((product) => product.category).filter(Boolean))]
+})
+
+const availableCategories = computed(() => {
+  if (selectedDepartment.value === 'all') {
+    return categories.value
   }
-  loading.value = false
+
+  return [
+    ...new Set(
+      products.value
+        .filter((product) => product.department === selectedDepartment.value)
+        .map((product) => product.category)
+        .filter(Boolean),
+    ),
+  ]
+})
+
+const filteredProducts = computed(() => {
+  return products.value.filter((product) => {
+    const matchDepartment =
+      selectedDepartment.value === 'all' || product.department === selectedDepartment.value
+
+    const matchCategory =
+      selectedCategory.value === 'all' || product.category === selectedCategory.value
+
+    return matchDepartment && matchCategory
+  })
+})
+
+const sortedProducts = computed(() => {
+  const sorted = [...filteredProducts.value]
+
+  if (selectedOrder.value === 'price-asc') {
+    return sorted.sort((a, b) => Number(a.price) - Number(b.price))
+  }
+
+  if (selectedOrder.value === 'price-desc') {
+    return sorted.sort((a, b) => Number(b.price) - Number(a.price))
+  }
+
+  if (selectedOrder.value === 'name-asc') {
+    return sorted.sort((a, b) => a.name.localeCompare(b.name))
+  }
+
+  if (selectedOrder.value === 'name-desc') {
+    return sorted.sort((a, b) => b.name.localeCompare(a.name))
+  }
+
+  return sorted
+})
+
+const paginatedProducts = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return sortedProducts.value.slice(start, end)
+})
+
+const totalPages = computed(() => {
+  return Math.ceil(sortedProducts.value.length / itemsPerPage)
+})
+
+const visiblePages = computed(() => {
+  const total = totalPages.value
+  const current = currentPage.value
+  const delta = 1
+  const pages = []
+
+  if (total <= 7) {
+    for (let i = 1; i <= total; i++) {
+      pages.push(i)
+    }
+    return pages
+  }
+
+  let rangeStart = Math.max(2, current - delta)
+  let rangeEnd = Math.min(total - 1, current + delta)
+
+  if (current <= 3) {
+    rangeEnd = 4
+  } else if (current >= total - 2) {
+    rangeStart = total - 3
+  }
+
+  pages.push(1)
+
+  if (rangeStart > 2) {
+    pages.push('...')
+  }
+
+  for (let i = rangeStart; i <= rangeEnd; i++) {
+    pages.push(i)
+  }
+
+  if (rangeEnd < total - 1) {
+    pages.push('...')
+  }
+
+  pages.push(total)
+
+  return pages
+})
+
+const updateUrlFilters = () => {
+  const query = {}
+
+  if (selectedDepartment.value !== 'all') {
+    query.department = selectedDepartment.value
+  }
+
+  if (selectedCategory.value !== 'all') {
+    query.category = selectedCategory.value
+  }
+
+  router.replace({
+    path: '/tienda',
+    query,
+  })
 }
 
-const applyPriceFilter = () => {
-  // El filtro se aplica automáticamente mediante computed property
-  console.log('Filtro aplicado:', { min: priceMin.value, max: priceMax.value })
+const selectDepartment = (department) => {
+  selectedDepartment.value = department
+  selectedCategory.value = 'all'
 }
 
-const clearPriceFilter = () => {
-  priceMin.value = null
-  priceMax.value = null
+const selectCategory = (category) => {
+  selectedCategory.value = category
 }
+
+const clearDepartment = () => {
+  selectedDepartment.value = 'all'
+  selectedCategory.value = 'all'
+}
+
+const clearCategory = () => {
+  selectedCategory.value = 'all'
+}
+
+const goToPage = (page) => {
+  currentPage.value = page
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+watch(
+  () => route.query,
+  (query) => {
+    selectedDepartment.value = query.department || 'all'
+    selectedCategory.value = query.category || 'all'
+    currentPage.value = 1
+  },
+)
+
+watch([selectedDepartment, selectedCategory], () => {
+  currentPage.value = 1
+})
 
 onMounted(() => {
   getProducts()

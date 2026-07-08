@@ -171,6 +171,7 @@
         </div>
 
         <button
+          @click="checkout"
           class="w-full bg-power-primary hover:bg-power-secondary transition-colors text-white text-sm font-bold py-3 rounded-xl flex items-center justify-center gap-2"
           :disabled="items.length === 0"
           :class="{ 'opacity-50 cursor-not-allowed': items.length === 0 }"
@@ -201,6 +202,7 @@
 
 <script setup>
 import { useCarrito } from '../stores/carrito.js'
+import { createCheckout } from '../services/checkout'
 
 const {
   isOpen,
@@ -211,4 +213,15 @@ const {
   getTotalItems,
   getTotalPrice,
 } = useCarrito()
+
+const checkout = async () => {
+  try {
+    const url = await createCheckout(items.value)
+
+    window.location.href = url
+  } catch (error) {
+    console.error(error)
+    alert('Error al iniciar el pago')
+  }
+}
 </script>

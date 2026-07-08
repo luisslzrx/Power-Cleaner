@@ -36,9 +36,9 @@
           <h3 class="text-xl md:text-2xl font-bold text-[#0b1a2e] mb-3 md:mb-4">Nuestra Misión</h3>
           <!-- Texto -->
           <p class="text-sm md:text-base font-normal leading-relaxed text-[#43474e]">
-            Proveer soluciones integrales de limpieza y desinfección que superen las expectativas de
-            nuestros clientes, utilizando procesos eco-sustentables y personal altamente calificado
-            para crear entornos seguros.
+            Brindar soluciones integrales de limpieza mediante la fabricación de productos de alta
+            calidad, innovadores y eficientes, que superen las expectativas de nuestros clientes,
+            contribuyendo al bienestar, la higiene y la productividad de empresas en todo el país.
           </p>
         </div>
 
@@ -72,9 +72,8 @@
           <h3 class="text-xl md:text-2xl font-bold text-[#0b1a2e] mb-3 md:mb-4">Nuestra Visión</h3>
           <!-- Texto -->
           <p class="text-sm md:text-base font-normal leading-relaxed text-[#43474e]">
-            Ser el referente número uno en México para servicios de limpieza avanzada, expandiendo
-            nuestra red de franquicias y consolidando nuestra marca como sinónimo de excelencia y
-            confianza.
+            Posicionar a Power Cleaner como una marca líder a nivel nacional e internacional,
+            reconocida por su excelencia, calidad e innovación.
           </p>
         </div>
       </div>
