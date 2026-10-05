@@ -203,6 +203,9 @@
 <script setup>
 import { useCarrito } from '../stores/carrito.js'
 import { createCheckout } from '../services/checkout'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const {
   isOpen,
@@ -214,14 +217,8 @@ const {
   getTotalPrice,
 } = useCarrito()
 
-const checkout = async () => {
-  try {
-    const url = await createCheckout(items.value)
-
-    window.location.href = url
-  } catch (error) {
-    console.error(error)
-    alert('Error al iniciar el pago')
-  }
+const checkout = () => {
+  closeCarrito()
+  router.push('/checkout')
 }
 </script>

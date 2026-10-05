@@ -23,6 +23,11 @@ const router = createRouter({
       component: Producto,
     },
     {
+      path: '/buscar',
+      name: 'Buscar',
+      component: () => import('@/views/BusquedaView.vue'),
+    },
+    {
       path: '/nosotros',
       name: 'Nosotros',
       component: () => import('@/views/Nosotros.vue'),
@@ -36,6 +41,31 @@ const router = createRouter({
       path: '/contacto',
       name: 'Contacto',
       component: () => import('@/views/Contacto.vue'),
+    },
+    {
+      path: '/maquila-tu-producto',
+      name: 'MaquilaTuProducto',
+      component: () => import('@/views/MaquilaTuProducto.vue'),
+    },
+    {
+      path: '/aviso-de-privacidad',
+      name: 'AvisoPrivacidad',
+      component: () => import('@/views/legal/AvisoPrivacidad.vue'),
+    },
+    {
+      path: '/terminos-y-condiciones',
+      name: 'TerminosCondiciones',
+      component: () => import('@/views/legal/TerminosCondiciones.vue'),
+    },
+    {
+      path: '/politica-de-envios',
+      name: 'PoliticaEnvios',
+      component: () => import('@/views/legal/PoliticaEnvios.vue'),
+    },
+    {
+      path: '/surtimos-tu-negocio',
+      name: 'SurtimosTuNegocio',
+      component: () => import('@/views/SurtimosTuNegocio.vue'),
     },
 
     {
@@ -53,9 +83,30 @@ const router = createRouter({
       name: 'auth',
       component: () => import('../views/AuthView.vue'),
     },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('../views/CheckoutView.vue'),
+    },
+    {
+      path: '/perfil',
+      name: 'Perfil',
+      component: () => import('../views/ProfileView.vue'),
+    },
   ],
 
-  scrollBehavior() {
+  // Control del desplazamiento (scroll) en las navegaciones:
+  scrollBehavior(to, from, savedPosition) {
+    // 1. Al presionar "Atrás" o "Adelante" en el navegador, restaura la posición exacta donde se quedó el usuario
+    if (savedPosition) {
+      return savedPosition
+    }
+    // 2. Si solo cambian los filtros (query params) en la misma ruta (ej. /tienda?category=...),
+    // retornamos false para no mover la pantalla ni brincar hacia el banner superior
+    if (to.path === from.path) {
+      return false
+    }
+    // 3. Al entrar a una página o ruta distinta, posiciona la vista al inicio
     return { top: 0 }
   },
 })

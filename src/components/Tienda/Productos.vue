@@ -1,5 +1,6 @@
 <template>
-  <section class="py-10">
+  <!-- ref="sectionRef": Referencia al inicio del catálogo para centrar la pantalla aquí al cambiar de página (ver scrollToProducts) -->
+  <section ref="sectionRef" class="py-10">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
       <div class="mb-6">
         <h2 class="text-xl md:text-2xl font-bold text-power-primary">
@@ -47,10 +48,7 @@
             </button>
 
             <template v-for="(page, idx) in visiblePages" :key="idx">
-              <span
-                v-if="page === '...'"
-                class="px-2 py-2 text-gray-400 text-sm select-none"
-              >
+              <span v-if="page === '...'" class="px-2 py-2 text-gray-400 text-sm select-none">
                 ...
               </span>
               <button
@@ -84,77 +82,16 @@
           </div>
         </div>
 
-        <aside class="lg:order-last order-first">
-          <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm sticky top-24">
-            <h3 class="text-sm font-bold text-gray-800 mb-4">Filtrar productos</h3>
-
-            <div class="mb-5">
-              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">
-                Departamento
-              </p>
-
-              <div class="flex flex-col gap-2">
-                <button
-                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
-                  :class="
-                    selectedDepartment === 'all'
-                      ? 'bg-power-primary text-white font-semibold'
-                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                  "
-                  @click="clearDepartment"
-                >
-                  Todos
-                </button>
-
-                <button
-                  v-for="department in departments"
-                  :key="department"
-                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
-                  :class="
-                    selectedDepartment === department
-                      ? 'bg-power-primary text-white font-semibold'
-                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                  "
-                  @click="selectDepartment(department)"
-                >
-                  {{ department }}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Categoría</p>
-
-              <div class="flex flex-col gap-2">
-                <button
-                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
-                  :class="
-                    selectedCategory === 'all'
-                      ? 'bg-power-primary text-white font-semibold'
-                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                  "
-                  @click="clearCategory"
-                >
-                  Todas
-                </button>
-
-                <button
-                  v-for="category in availableCategories"
-                  :key="category"
-                  class="text-left text-sm px-3 py-2 rounded-xl transition-colors"
-                  :class="
-                    selectedCategory === category
-                      ? 'bg-power-primary text-white font-semibold'
-                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                  "
-                  @click="selectCategory(category)"
-                >
-                  {{ category }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </aside>
+        <Filtros
+          :selected-department="selectedDepartment"
+          :selected-category="selectedCategory"
+          :departments="departments"
+          :available-categories="availableCategories"
+          @select-department="selectDepartment"
+          @select-category="selectCategory"
+          @clear-department="clearDepartment"
+          @clear-category="clearCategory"
+        />
       </div>
     </div>
   </section>
@@ -165,18 +102,26 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../../supabase'
 import ProductoCard from '@/components/Inicio/ProductoCard.vue'
+import Filtros from './Filtros.vue'
 
+// Instancias de rutas y router para interactuar con los parámetros query de la URL
 const route = useRoute()
 const router = useRouter()
 
+// Listado reactivo de todos los productos cargados desde la base de datos
 const products = ref([])
 
-const selectedDepartment = ref(route.query.department || 'all')
-const selectedCategory = ref(route.query.category || 'all')
-const selectedOrder = ref('default')
-const currentPage = ref(1)
-const itemsPerPage = 12
+// Estados reactivos de filtrado, ordenamiento y paginación
+const selectedDepartment = ref(route.query.department || 'all') // Departamento activo
+const selectedCategory = ref(route.query.category || 'all') // Categoría activa
+const selectedOrder = ref('default') // Criterio de ordenación por precio o nombre
+const currentPage = ref(1) // Página actual visible en el paginador
+const itemsPerPage = 12 // Límite de productos mostrados por página
 
+/**
+ * Consulta a Supabase para cargar todos los productos de la tabla 'productos'.
+ * Filtra agrupando variantes por SKU padre y selecciona como principal la variante de menor precio.
+ */
 const getProducts = async () => {
   const { data, error } = await supabase
     .from('productos')
@@ -188,6 +133,7 @@ const getProducts = async () => {
     return
   }
 
+  // Agrupar variantes por parent_sku o sku para evitar productos duplicados en tienda
   const groupedProducts = Object.values(
     (data || []).reduce((acc, product) => {
       const key = product.parent_sku || product.sku || product.id
@@ -208,14 +154,24 @@ const getProducts = async () => {
   products.value = groupedProducts
 }
 
+/**
+ * Propiedad computada: Obtiene el conjunto único de Departamentos a partir de los productos cargados.
+ */
 const departments = computed(() => {
   return [...new Set(products.value.map((product) => product.department).filter(Boolean))]
 })
 
+/**
+ * Propiedad computada: Obtiene el conjunto único de Categorías a partir de los productos cargados.
+ */
 const categories = computed(() => {
   return [...new Set(products.value.map((product) => product.category).filter(Boolean))]
 })
 
+/**
+ * Propiedad computada: Obtiene las categorías específicas asociadas al departamento seleccionado.
+ * Si el departamento es "all" (Todos), devuelve todas las categorías disponibles.
+ */
 const availableCategories = computed(() => {
   if (selectedDepartment.value === 'all') {
     return categories.value
@@ -231,6 +187,9 @@ const availableCategories = computed(() => {
   ]
 })
 
+/**
+ * Propiedad computada: Filtra los productos en base al Departamento y la Categoría seleccionados.
+ */
 const filteredProducts = computed(() => {
   return products.value.filter((product) => {
     const matchDepartment =
@@ -243,38 +202,50 @@ const filteredProducts = computed(() => {
   })
 })
 
+/**
+ * Propiedad computada: Ordena los productos filtrados según la opción elegida en el desplegable.
+ */
 const sortedProducts = computed(() => {
   const sorted = [...filteredProducts.value]
 
   if (selectedOrder.value === 'price-asc') {
-    return sorted.sort((a, b) => Number(a.price) - Number(b.price))
+    return sorted.sort((a, b) => Number(a.price) - Number(b.price)) // Menor a mayor precio
   }
 
   if (selectedOrder.value === 'price-desc') {
-    return sorted.sort((a, b) => Number(b.price) - Number(a.price))
+    return sorted.sort((a, b) => Number(b.price) - Number(a.price)) // Mayor a menor precio
   }
 
   if (selectedOrder.value === 'name-asc') {
-    return sorted.sort((a, b) => a.name.localeCompare(b.name))
+    return sorted.sort((a, b) => a.name.localeCompare(b.name)) // Alfabético A-Z
   }
 
   if (selectedOrder.value === 'name-desc') {
-    return sorted.sort((a, b) => b.name.localeCompare(a.name))
+    return sorted.sort((a, b) => b.name.localeCompare(a.name)) // Alfabético Z-A
   }
 
   return sorted
 })
 
+/**
+ * Propiedad computada: Divide la lista ordenada de productos según la página actual de paginación.
+ */
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
   return sortedProducts.value.slice(start, end)
 })
 
+/**
+ * Propiedad computada: Retorna la cantidad total de páginas necesarias.
+ */
 const totalPages = computed(() => {
   return Math.ceil(sortedProducts.value.length / itemsPerPage)
 })
 
+/**
+ * Propiedad computada: Calcula los botones numéricos de paginación visibles (incluyendo elipsis '...') de forma dinámica.
+ */
 const visiblePages = computed(() => {
   const total = totalPages.value
   const current = currentPage.value
@@ -316,6 +287,9 @@ const visiblePages = computed(() => {
   return pages
 })
 
+/**
+ * Sincroniza y actualiza la URL del navegador agregando los filtros de búsqueda activos como query parameters.
+ */
 const updateUrlFilters = () => {
   const query = {}
 
@@ -333,43 +307,89 @@ const updateUrlFilters = () => {
   })
 }
 
+/**
+ * Selecciona un departamento específico y limpia cualquier filtro de categoría activo.
+ * NOTA: updateUrlFilters() sincroniza la URL con router.replace sin recargar la página.
+ * Si deseas no actualizar la URL al cambiar de departamento, simplemente comenta esa línea.
+ */
 const selectDepartment = (department) => {
   selectedDepartment.value = department
   selectedCategory.value = 'all'
+  updateUrlFilters()
 }
 
+/**
+ * Selecciona una categoría específica.
+ * NOTA: updateUrlFilters() guarda la categoría activa en la URL (?category=...).
+ * Gracias a esto, si el usuario entra a un producto y da "Atrás", el filtro no se pierde.
+ */
 const selectCategory = (category) => {
   selectedCategory.value = category
+  updateUrlFilters()
 }
 
+/**
+ * Restablece los filtros de departamento y categoría a sus valores por defecto ('all').
+ */
 const clearDepartment = () => {
   selectedDepartment.value = 'all'
   selectedCategory.value = 'all'
+  updateUrlFilters()
 }
 
+/**
+ * Restablece el filtro de categoría activo manteniendo el departamento si lo hubiera.
+ */
 const clearCategory = () => {
   selectedCategory.value = 'all'
+  updateUrlFilters()
 }
 
+// =========================================================================================
+// CONTROL DE DESPLAZAMIENTO (SCROLL) EN PAGINACIÓN
+// =========================================================================================
+// Referencia al elemento <section ref="sectionRef"> donde inicia el catálogo de productos.
+const sectionRef = ref(null)
+
+/**
+ * Desplaza la pantalla suavemente al inicio de los productos.
+ * CÓMO CAMBIARLO:
+ * - Para que el salto sea instantáneo en lugar de animado: cambia behavior a 'auto'.
+ * - Para que la pantalla no se mueva en absoluto: deja la función vacía {}.
+ */
+const scrollToProducts = () => {
+  sectionRef.value?.scrollIntoView({ behavior: 'smooth' })
+}
+
+/**
+ * Navega a un número de página específico (ej. página 1, 2, 3...) y sube la vista al inicio de productos.
+ */
 const goToPage = (page) => {
   currentPage.value = page
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollToProducts()
 }
 
+/**
+ * Avanza a la siguiente página del catálogo.
+ */
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollToProducts()
   }
 }
 
+/**
+ * Retrocede a la página anterior del catálogo.
+ */
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollToProducts()
   }
 }
 
+// Observa cambios en el query string de la URL (ej. al dar click en el menú principal) para re-aplicar filtros
 watch(
   () => route.query,
   (query) => {
@@ -379,10 +399,12 @@ watch(
   },
 )
 
+// Observa cambios en los filtros para regresar a la primera página automáticamente
 watch([selectedDepartment, selectedCategory], () => {
   currentPage.value = 1
 })
 
+// Hook al montar el componente: Carga la lista inicial de productos de la base de datos
 onMounted(() => {
   getProducts()
 })

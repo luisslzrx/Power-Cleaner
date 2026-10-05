@@ -1,6 +1,90 @@
 <template>
   <section class="w-full bg-white py-6 md:py-10 font-sans">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <!-- Breadcrumbs / Migas de pan de navegación -->
+      <nav
+        aria-label="Migas de pan"
+        class="mb-5 md:mb-7 flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-gray-500 flex-wrap"
+      >
+        <RouterLink to="/" class="hover:text-power-secondary transition-colors font-medium">
+          Inicio
+        </RouterLink>
+
+        <svg
+          class="w-3 h-3 text-gray-400 flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+
+        <RouterLink to="/tienda" class="hover:text-power-secondary transition-colors font-medium">
+          Tienda
+        </RouterLink>
+
+        <!-- Departamento (si está disponible en los datos del producto) -->
+        <template v-if="productDepartment">
+          <svg
+            class="w-3 h-3 text-gray-400 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+          <RouterLink
+            :to="{ path: '/tienda', query: { department: productDepartment } }"
+            class="hover:text-power-secondary transition-colors font-medium"
+          >
+            {{ productDepartment }}
+          </RouterLink>
+        </template>
+
+        <!-- Categoría (si está disponible en los datos del producto) -->
+        <template v-if="productCategory">
+          <svg
+            class="w-3 h-3 text-gray-400 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+          <RouterLink
+            :to="{
+              path: '/tienda',
+              query: {
+                ...(productDepartment ? { department: productDepartment } : {}),
+                category: productCategory,
+              },
+            }"
+            class="hover:text-power-secondary transition-colors font-medium"
+          >
+            {{ productCategory }}
+          </RouterLink>
+        </template>
+
+        <svg
+          class="w-3 h-3 text-gray-400 flex-shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+
+        <span
+          class="text-gray-800 font-semibold truncate max-w-[180px] sm:max-w-[280px] md:max-w-[400px]"
+        >
+          {{ productName }}
+        </span>
+      </nav>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-14 items-start">
         <!-- LEFT: Galería -->
         <div class="flex flex-col">
@@ -29,8 +113,8 @@
         </div>
 
         <!-- RIGHT: Info -->
-        <div class="flex flex-col gap-4 md:gap-5 pt-2">
-          <!-- Título + badge variante -->
+        <div class="flex flex-col gap-3.5 md:gap-4 pt-2">
+          <!-- 1. Título + badge variante -->
           <div class="flex items-start justify-between gap-3 md:gap-4">
             <h1 class="text-xl md:text-2xl font-bold text-gray-900 leading-snug">
               {{ productName }}
@@ -42,24 +126,34 @@
             </span>
           </div>
 
-          <!-- Estrellas + reviews -->
+          <!-- 2. Categoría -->
+          <div v-if="productCategory" class="flex items-center">
+            <RouterLink
+              :to="{
+                path: '/tienda',
+                query: {
+                  ...(productDepartment ? { department: productDepartment } : {}),
+                  category: productCategory,
+                },
+              }"
+              class="inline-flex items-center text-xs font-semibold text-power-secondary bg-blue-50 hover:bg-blue-100 border border-blue-200/70 rounded-md px-2.5 py-1 transition-colors"
+            >
+              {{ productCategory }}
+            </RouterLink>
+          </div>
+
+          <!-- 3. Estrellas -->
           <div class="flex items-center gap-2">
             <div class="flex items-center gap-0.5">
-              <svg
+              <img
                 v-for="s in 5"
                 :key="s"
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 text-yellow-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.074 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.957z"
-                />
-              </svg>
+                src="/src/assets/icons/star.svg"
+                alt="★"
+                class="w-4 h-4"
+              />
             </div>
             <span class="text-sm font-bold text-gray-700">4.5</span>
-            <span class="text-sm text-gray-400">de 392 reseñas</span>
           </div>
 
           <!-- Precio -->
@@ -99,55 +193,36 @@
           <!-- Features list -->
           <ul class="flex flex-col gap-2.5">
             <li class="flex items-center gap-2.5 text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-blue-500 flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-blue.svg"
+                alt="✓"
+                class="w-5 h-5 flex-shrink-0"
+              />
               Alta Calidad
             </li>
             <li class="flex items-center gap-2.5 text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-blue-500 flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-blue.svg"
+                alt="✓"
+                class="w-5 h-5 flex-shrink-0"
+              />
               Chat con nosotros 24 horas
             </li>
             <li class="flex items-center gap-2.5 text-sm text-gray-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-blue-500 flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-blue.svg"
+                alt="✓"
+                class="w-5 h-5 flex-shrink-0"
+              />
               Viene con empaque incluido
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-gray-600">
+              <img
+                src="/src/assets/icons/check-circle-blue.svg"
+                alt="✓"
+                class="w-5 h-5 flex-shrink-0"
+              />
+              Envío seguro
             </li>
           </ul>
 
@@ -222,6 +297,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import { RouterLink } from 'vue-router'
 import { supabase } from '../../supabase'
 import { useCarrito } from '../../stores/carrito.js'
 import { createCheckout } from '../../services/checkout'
@@ -240,6 +316,12 @@ const productPrice = ref('Cargando...')
 const productImage = ref('Cargando...')
 const productDescription = ref('Cargando...')
 const product = ref(null)
+
+// Departamentos y categorías computadas para las migas de pan (breadcrumbs)
+const productDepartment = computed(
+  () => product.value?.department || product.value?.departamento || '',
+)
+const productCategory = computed(() => product.value?.category || product.value?.categoria || '')
 
 const variants = ref([])
 const selectedVariant = ref(null)
@@ -313,11 +395,7 @@ const handleBuyNow = async () => {
 }
 
 const loadProduct = async (productId) => {
-  const { data, error } = await supabase
-    .from('productos')
-    .select('*')
-    .eq('id', productId)
-    .single()
+  const { data, error } = await supabase.from('productos').select('*').eq('id', productId).single()
 
   if (error) {
     productName.value = 'Error al cargar'

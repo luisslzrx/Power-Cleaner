@@ -23,20 +23,11 @@
           ></div>
 
           <!-- Ícono -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 md:w-10 md:h-10 text-[#b52426] block mb-4 md:mb-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-            />
-          </svg>
+          <img
+            src="/src/assets/icons/store-office-red.svg"
+            alt="Menudeo"
+            class="w-8 h-8 md:w-10 md:h-10 block mb-4 md:mb-6"
+          />
 
           <!-- Título -->
           <p class="text-sm md:text-base font-normal text-[#0b1a2e] mb-2 md:mb-3">
@@ -52,54 +43,27 @@
           <!-- Lista -->
           <ul class="list-none p-0 mb-6 md:mb-10 flex flex-col gap-3 md:gap-4">
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#b52426] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-red.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base text-[#0b1a2e]">Sin mínimo de compra</span>
             </li>
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#b52426] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-red.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base text-[#0b1a2e]">Envío a domicilio en 24h</span>
             </li>
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#b52426] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-red.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base text-[#0b1a2e]">Atención personalizada</span>
             </li>
           </ul>
@@ -120,20 +84,11 @@
           ></div>
 
           <!-- Ícono -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 md:w-10 md:h-10 text-[#ff5a55] block mb-4 md:mb-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-            />
-          </svg>
+          <img
+            src="/src/assets/icons/store-office-coral.svg"
+            alt="Mayoreo"
+            class="w-8 h-8 md:w-10 md:h-10 block mb-4 md:mb-6"
+          />
 
           <!-- Título -->
           <p class="text-sm md:text-base font-normal text-white mb-2 md:mb-3">Venta al Mayoreo</p>
@@ -147,58 +102,31 @@
           <!-- Lista -->
           <ul class="list-none p-0 mb-6 md:mb-10 flex flex-col gap-3 md:gap-4">
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#ff5a55] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-coral.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base font-bold text-white"
                 >Precios competitivos por volumen</span
               >
             </li>
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#ff5a55] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-coral.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base font-bold text-white"
                 >Fichas técnicas COFEPRIS</span
               >
             </li>
             <li class="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-5 md:h-5 text-[#ff5a55] flex-shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/check-circle-coral.svg"
+                alt="Sí"
+                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+              />
               <span class="text-sm md:text-base font-bold text-white"
                 >Crédito comercial para empresas</span
               >

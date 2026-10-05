@@ -84,7 +84,7 @@ const handleAuth = async () => {
       return
     }
 
-    window.location.href = '/'
+    window.location.href = '/perfil'
   }
 }
 

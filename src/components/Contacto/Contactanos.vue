@@ -20,25 +20,11 @@
             <div
               class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/direccion.svg"
+                alt="Dirección"
+                class="w-5 h-5 md:w-[22px] md:h-[22px]"
+              />
             </div>
             <div>
               <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Dirección:</p>
@@ -54,50 +40,61 @@
             <div
               class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/email.svg"
+                alt="Email"
+                class="w-5 h-5 md:w-[22px] md:h-[22px]"
+              />
             </div>
             <div>
               <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Email:</p>
-              <p class="text-xs md:text-sm text-[#43474e]">contacto@powercleaner.mx</p>
+              <p class="text-xs md:text-sm text-[#43474e]">
+                <a href="mailto:ventas@powercleaner.com" class="hover:text-power-accent transition-colors">
+                  ventas@powercleaner.com
+                </a>
+              </p>
             </div>
           </div>
 
           <!-- Teléfono -->
+          <div class="flex items-center gap-3 md:gap-5 mb-6 md:mb-8">
+            <div
+              class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
+            >
+              <img
+                src="/src/assets/icons/telefono.svg"
+                alt="Teléfono"
+                class="w-5 h-5 md:w-[22px] md:h-[22px]"
+              />
+            </div>
+            <div>
+              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Teléfono:</p>
+              <p class="text-xs md:text-sm text-[#43474e]">
+                <a href="tel:+523122454500" class="hover:text-power-accent transition-colors">
+                  +52 312 245 4500
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- WhatsApp -->
           <div class="flex items-center gap-3 md:gap-5 mb-8 md:mb-12">
             <div
               class="w-11 h-11 md:w-13 md:h-13 bg-power-primary rounded-xl flex items-center justify-center flex-shrink-0"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 md:w-[22px] md:h-[22px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
+              <img
+                src="/src/assets/icons/whatsapp.svg"
+                alt="WhatsApp"
+                class="w-5 h-5 md:w-[22px] md:h-[22px]"
+              />
             </div>
             <div>
-              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">Teléfono:</p>
-              <p class="text-xs md:text-sm text-[#43474e]">+52 33 1840 0789</p>
+              <p class="text-xs md:text-sm font-bold text-[#0b1a2e] mb-1">WhatsApp:</p>
+              <p class="text-xs md:text-sm text-[#43474e]">
+                <a href="https://wa.me/5213122454500" target="_blank" rel="noopener noreferrer" class="hover:text-[#25D366] transition-colors font-semibold">
+                  +52 1 312 245 4500
+                </a>
+              </p>
             </div>
           </div>
 
@@ -110,88 +107,50 @@
 
           <!-- Redes sociales -->
           <div class="flex items-center gap-3 md:gap-4">
-            <div
-              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/MERICAN.CLEANING.PRODUCTS"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary hover:bg-power-accent transition-colors flex items-center justify-center cursor-pointer shadow-sm text-white"
+              title="Facebook"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-              </svg>
-            </div>
-            <div
-              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              <img
+                src="/src/assets/icons/facebook.svg"
+                alt="Facebook"
+                class="w-[18px] h-[18px]"
+              />
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/powercleaner.88"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary hover:bg-power-accent transition-colors flex items-center justify-center cursor-pointer shadow-sm text-white"
+              title="Instagram"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                />
-              </svg>
-            </div>
-            <div
-              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
+              <img
+                src="/src/assets/icons/instagram.svg"
+                alt="Instagram"
+                class="w-[18px] h-[18px]"
+              />
+            </a>
+
+            <!-- TikTok -->
+            <a
+              href="https://www.tiktok.com/@elpoderdelalimpieza"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary hover:bg-power-accent transition-colors flex items-center justify-center cursor-pointer shadow-sm text-white"
+              title="TikTok"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </div>
-            <div
-              class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-power-primary flex items-center justify-center cursor-pointer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 md:w-[18px] md:h-[18px] text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
+              <img
+                src="/src/assets/icons/tiktok.svg"
+                alt="TikTok"
+                class="w-[18px] h-[18px]"
+              />
+            </a>
           </div>
         </div>
 

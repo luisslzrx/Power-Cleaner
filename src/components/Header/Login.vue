@@ -26,13 +26,16 @@
 
   <div
     v-else
-    class="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-lg border border-white/10 bg-white/[0.04]"
+    class="hidden md:flex items-center gap-4 px-4 py-2.5 rounded-lg border border-white/10 bg-white/[0.04]"
   >
-    <span class="text-sm font-medium text-white/80">
+    <RouterLink
+      to="/perfil"
+      class="text-sm font-medium text-white/80 hover:text-white hover:underline transition-all"
+    >
       {{ user.email }}
-    </span>
+    </RouterLink>
 
-    <button class="text-xs text-white/50 hover:text-white" @click="logout">Salir</button>
+    <button class="text-xs text-white/50 hover:text-white transition-colors" @click="logout">Salir</button>
   </div>
 </template>
 

@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Botones azules (Power Primary) */
+  button.bg-power-primary,
+  a.bg-power-primary,
+  .btn-power-blue {
+    @apply transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] hover:bg-power-secondary;
+  }
+
+  /* Botones rojos (Power Accent / Red) */
+  button.bg-power-accent,
+  a.bg-power-accent,
+  button.bg-red-600,
+  a.bg-red-600,
+  .btn-power-red {
+    @apply transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] hover:bg-[#a30f1b];
+  }
+}

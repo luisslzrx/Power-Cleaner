@@ -22,6 +22,7 @@ import WhatsAppButton from './components/WhatsAppButton.vue'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'HK Grotesk', sans-serif;
 }
 
 html,
@@ -29,7 +30,6 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: 'HK Grotesk', sans-serif;
 }
 
 .app-container {

@@ -9,7 +9,7 @@
 
     <!-- WhatsApp Button (circle) -->
     <a
-      href="https://wa.me/523141007071?text=Hola,%20necesito%20información%20sobre%20sus%20productos"
+      href="https://wa.me/5213122454500?text=Hola,%20necesito%20información%20sobre%20sus%20productos"
       target="_blank"
       rel="noopener noreferrer"
       class="w-14 h-14 flex items-center justify-center bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#128C7E] transition-all hover:scale-105 hover:shadow-xl flex-shrink-0"

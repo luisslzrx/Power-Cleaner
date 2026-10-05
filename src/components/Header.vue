@@ -189,8 +189,14 @@
 
         <!-- Nav links -->
         <nav class="flex items-center gap-7 px-8">
-          <RouterLink to="/" class="text-sm font-semibold text-black">Inicio</RouterLink>
-          <RouterLink to="/tienda" class="text-sm text-gray-600 hover:text-black transition-colors"
+          <RouterLink
+            to="/"
+            class="text-sm text-gray-600 hover:text-black transition-colors"
+            >Inicio</RouterLink
+          >
+          <RouterLink
+            to="/tienda"
+            class="text-sm text-gray-600 hover:text-black transition-colors"
             >Tienda</RouterLink
           >
           <RouterLink
@@ -221,25 +227,7 @@
       v-if="mobileSearchOpen"
       class="md:hidden w-full bg-power-primary border-t border-white/10 px-4 py-3"
     >
-      <div
-        class="flex items-center rounded-lg overflow-hidden bg-white/[0.06] border border-white/10 px-4 py-2.5 gap-3"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 text-white/30 flex-shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-          />
-        </svg>
-        <span class="text-white/30 text-sm flex-1">Buscar productos...</span>
-      </div>
+      <BuscadorProductos :is-mobile="true" @navigate="mobileSearchOpen = false" />
     </div>
 
     <!-- Mobile menu -->
@@ -249,7 +237,7 @@
         <nav class="flex flex-col gap-4">
           <RouterLink
             to="/"
-            class="text-base font-semibold text-black py-2"
+            class="text-base text-gray-600 hover:text-black py-2"
             @click="toggleMobileMenu"
             >Inicio</RouterLink
           >
@@ -281,10 +269,13 @@
           </div>
         </div>
 
-        <!-- Mobile sign in -->
+        <!-- Mobile sign in / profile -->
         <div class="mt-4">
-          <div
+          <RouterLink
+            v-if="!user"
+            to="/auth"
             class="flex items-center justify-center gap-2 cursor-pointer px-4 py-2.5 rounded-lg border border-gray-300 bg-gray-50"
+            @click="toggleMobileMenu"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -301,6 +292,36 @@
               />
             </svg>
             <span class="text-sm font-medium text-gray-600">Ingresar</span>
+          </RouterLink>
+
+          <div v-else class="flex flex-col gap-2">
+            <RouterLink
+              to="/perfil"
+              class="flex items-center justify-center gap-2 cursor-pointer px-4 py-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 font-medium"
+              @click="toggleMobileMenu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              <span class="text-sm truncate">{{ user.email }}</span>
+            </RouterLink>
+            <button
+              class="w-full text-center text-xs text-red-600 font-medium bg-red-50 hover:bg-red-100 py-2 rounded-lg"
+              @click="logout"
+            >
+              Cerrar sesión
+            </button>
           </div>
         </div>
 
@@ -337,13 +358,15 @@ import BuscadorProductos from './Header/BuscadorProductos.vue'
 import CategoriasMenu from './Header/CategoriasMenu.vue'
 import Login from './Header/Login.vue'
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { supabase } from '../supabase'
 import { useCarrito } from '../stores/carrito.js'
 
-const { openCarrito } = useCarrito()
+const { openCarrito, clearCart } = useCarrito()
 
 const mobileMenuOpen = ref(false)
 const mobileSearchOpen = ref(false)
+const user = ref(null)
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
@@ -354,4 +377,27 @@ const toggleMobileSearch = () => {
   mobileSearchOpen.value = !mobileSearchOpen.value
   mobileMenuOpen.value = false
 }
+
+const logout = async () => {
+  await supabase.auth.signOut()
+  await clearCart()
+  user.value = null
+  toggleMobileMenu()
+}
+
+onMounted(async () => {
+  const { data } = await supabase.auth.getUser()
+  user.value = data.user
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    user.value = session?.user || null
+  })
+})
 </script>
+
+<style scoped>
+nav a.router-link-exact-active {
+  font-weight: 700 !important;
+  color: #000000 !important;
+}
+</style>

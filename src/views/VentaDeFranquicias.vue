@@ -1,19 +1,15 @@
+<script setup>
+import Banner from '@/components/Franquicias/Banner.vue'
+import Informacion from '@/components/Franquicias/Informacion.vue'
+import Capacidades from '@/components/Franquicias/Capacidades.vue'
+import Cotizacion from '@/components/Franquicias/Cotizacion.vue'
+</script>
+
 <template>
-  <div>
-    <BannerTienda />
-    <FranquiciasInfomacion />
-    <FranquiciasBeneficios />
-    <FranquiciasRequisitos />
-    <FranquiciasProceso />
-    <FranquiciasFormulario />
+  <div class="min-h-screen bg-white">
+    <Banner />
+    <Informacion />
+    <Capacidades />
+    <Cotizacion />
   </div>
 </template>
-
-<script setup>
-import BannerTienda from '@/components/VentaDeFranquicias/BannerTienda.vue'
-import FranquiciasInfomacion from '@/components/VentaDeFranquicias/FranquiciasInfomacion.vue'
-import FranquiciasBeneficios from '@/components/VentaDeFranquicias/FranquiciasBeneficios.vue'
-import FranquiciasRequisitos from '@/components/VentaDeFranquicias/FranquiciasRequisitos.vue'
-import FranquiciasProceso from '@/components/VentaDeFranquicias/FranquiciasProceso.vue'
-import FranquiciasFormulario from '@/components/VentaDeFranquicias/FranquiciasFormulario.vue'
-</script>

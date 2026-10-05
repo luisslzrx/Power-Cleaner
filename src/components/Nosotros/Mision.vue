@@ -17,20 +17,11 @@
           <div
             class="w-12 h-12 md:w-14 md:h-14 bg-[#fce8e8] rounded-xl flex items-center justify-center mb-6 md:mb-8"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5 md:w-6 md:h-6 text-[#b52426]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
-              />
-            </svg>
+            <img
+              src="/src/assets/icons/mision-flag.svg"
+              alt="Misión"
+              class="w-5 h-5 md:w-6 md:h-6"
+            />
           </div>
           <!-- Título -->
           <h3 class="text-xl md:text-2xl font-bold text-[#0b1a2e] mb-3 md:mb-4">Nuestra Misión</h3>
@@ -48,25 +39,11 @@
           <div
             class="w-12 h-12 md:w-14 md:h-14 bg-[#f0f1f5] rounded-xl flex items-center justify-center mb-6 md:mb-8"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5 md:w-6 md:h-6 text-[#43474e]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-              />
-            </svg>
+            <img
+              src="/src/assets/icons/vision-eye.svg"
+              alt="Visión"
+              class="w-5 h-5 md:w-6 md:h-6"
+            />
           </div>
           <!-- Título -->
           <h3 class="text-xl md:text-2xl font-bold text-[#0b1a2e] mb-3 md:mb-4">Nuestra Visión</h3>

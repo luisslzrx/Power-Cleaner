@@ -8,11 +8,7 @@
     >
       <!-- Discount -->
       <div class="flex items-center gap-3 md:gap-4 pl-0">
-        <img
-          src="/src/assets/icons/descuento.svg"
-          alt="Envío gratis"
-          class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0"
-        />
+        <IconDescuento class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0" />
         <div>
           <p class="text-xs md:text-sm font-semibold">Ofertas</p>
           <p class="text-[10px] md:text-xs">Descuentos exclusivos</p>
@@ -21,24 +17,16 @@
 
       <!-- Free Delivery -->
       <div class="flex items-center gap-3 md:gap-4 pl-4 md:pl-6">
-        <img
-          src="/src/assets/icons/envio.svg"
-          alt="Envío gratis"
-          class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0"
-        />
+        <IconEnvio class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0" />
         <div>
-          <p class="text-xs md:text-sm font-semibold">Envío gratis</p>
+          <p class="text-xs md:text-sm font-semibold">Envío seguro</p>
           <p class="text-[10px] md:text-xs">Rápido y seguro</p>
         </div>
       </div>
 
       <!-- Great Support 24/7 -->
       <div class="flex items-center gap-3 md:gap-4 pl-4 md:pl-6">
-        <img
-          src="/src/assets/icons/servicio.svg"
-          alt="Soporte 24/7"
-          class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0"
-        />
+        <IconServicio class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0" />
         <div>
           <p class="text-xs md:text-sm font-semibold">Soporte</p>
           <p class="text-[10px] md:text-xs">Atención 24/7</p>
@@ -47,11 +35,7 @@
 
       <!-- Secure Payment -->
       <div class="flex items-center gap-3 md:gap-4 pl-4 md:pl-6">
-        <img
-          src="/src/assets/icons/seguro.svg"
-          alt="Pago seguro"
-          class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0"
-        />
+        <IconSeguro class="w-8 h-8 md:w-10 md:h-10 flex-shrink-0" />
         <div>
           <p class="text-xs md:text-sm font-semibold">Pago seguro</p>
           <p class="text-[10px] md:text-xs">Compra protegida</p>
@@ -60,3 +44,8 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { IconDescuento, IconEnvio, IconServicio, IconSeguro } from '@/components/Icons'
+</script>
+

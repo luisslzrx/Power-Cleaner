@@ -8,22 +8,25 @@ import ProductosRecientes from '@/components/Inicio/ProductosRecientes.vue'
 import Beneficios from '@/components/Inicio/Beneficios.vue'
 import Categorias from '@/components/Inicio/Categorias.vue'
 import Franquicias from '@/components/Inicio/Franquicias.vue'
+import MaquilaBanner from '@/components/Inicio/MaquilaBanner.vue'
 import ProductosMayoreo from '@/components/Inicio/ProductosMayoreo.vue'
 import ProductosPaquetes from '@/components/Inicio/ProductosPaquetes.vue'
+import ProductosAutomotriz from '@/components/Inicio/ProductosAutomotriz.vue'
 </script>
 
 <template>
   <div class="min-h-screen bg-white">
-    <Hero />
-    <Bar />
-    <ProductosDestacados class="my-16" />
-    <ProductosPaquetes class="my-16" />
-    <Categorias class="my-16" />
-    <ProductosRecientes class="my-16" />
-    <Testimoniales class="my-16" />
-    <Subcategorias class="my-16" />
-    <Franquicias class="my-16" />
-    <ProductosMayoreo class="my-16" />
-    <Beneficios class="my-16" />
+    <Hero class="animate-fade-in-up" />
+    <Bar class="animate-fade-in-up" />
+    <ProductosDestacados class="my-16 animate-fade-in-up" />
+    <Categorias class="my-16 animate-fade-in-up" />
+    <ProductosRecientes class="my-16 animate-fade-in-up" />
+    <Subcategorias class="my-16 animate-fade-in-up" />
+    <Franquicias class="my-16 animate-fade-in-up" />
+    <Testimoniales class="my-16 animate-fade-in-up" />
+    <ProductosMayoreo class="my-16 animate-fade-in-up" />
+    <MaquilaBanner class="my-16 animate-fade-in-up" />
+    <Beneficios class="my-16 animate-fade-in-up" />
+    <ProductosAutomotriz class="my-16 animate-fade-in-up" />
   </div>
 </template>

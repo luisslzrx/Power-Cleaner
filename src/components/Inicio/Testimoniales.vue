@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <section class="bg-gray-100 py-8 md:py-16">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
@@ -8,40 +9,29 @@
         <!-- Nav arrows -->
         <div class="flex items-center gap-3">
           <button
-            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-power-blue hover:bg-blue-600 transition-colors flex items-center justify-center shadow"
+            @click="prevTestimonials"
+            class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-gray-300 bg-white hover:border-power-blue transition-colors flex items-center justify-center shadow-sm text-gray-500 active:scale-95"
+            aria-label="Testimonial anterior"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3 h-3 md:w-4 md:h-4 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.5"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
+            <IconChevronLeft class="w-3 h-3 md:w-4 md:h-4" />
           </button>
           <button
-            class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-gray-300 bg-white hover:border-power-blue transition-colors flex items-center justify-center shadow-sm"
+            @click="nextTestimonials"
+            class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-gray-300 bg-white hover:border-power-blue transition-colors flex items-center justify-center shadow-sm text-gray-500 active:scale-95"
+            aria-label="Siguiente testimonial"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-3 h-3 md:w-4 md:h-4 text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.5"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <IconChevronRight class="w-3 h-3 md:w-4 md:h-4" />
           </button>
         </div>
       </div>
 
       <!-- Cards grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        <!-- Card 1 -->
-        <div class="relative bg-white rounded-2xl p-6 md:p-8 shadow-sm overflow-hidden">
+        <!-- Card 1 (Always visible, index 1) -->
+        <div
+          :key="testimonials[currentIndex].name"
+          class="animate-fade-in relative bg-white rounded-2xl p-6 md:p-8 shadow-sm overflow-hidden"
+        >
           <!-- Left teal border accent -->
           <div
             class="absolute left-0 top-6 md:top-8 bottom-6 md:bottom-8 w-1 bg-power-blue rounded-full"
@@ -49,21 +39,23 @@
 
           <!-- Quote text -->
           <p class="text-gray-600 text-xs md:text-sm leading-relaxed pl-4 mb-6 md:mb-8">
-            Power Cleaner ha transformado completamente mi rutina de limpieza. Sus productos no solo
-            dejan todo impecable, sino que el aroma fresco dura días. Totalmente recomendado para
-            quienes buscan calidad y eficacia.
+            {{ testimonials[currentIndex].text }}
           </p>
 
           <!-- Author -->
           <div class="flex items-center gap-3">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kristin"
-              alt="Kristin Watson"
-              class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover bg-orange-200"
+              :src="testimonials[currentIndex].avatar"
+              :alt="testimonials[currentIndex].name"
+              class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
             />
             <div>
-              <p class="text-xs md:text-sm font-semibold text-gray-800">María González</p>
-              <p class="text-[10px] md:text-xs text-gray-400">Ama de casa</p>
+              <p class="text-xs md:text-sm font-semibold text-gray-800">
+                {{ testimonials[currentIndex].name }}
+              </p>
+              <p class="text-[10px] md:text-xs text-gray-400">
+                {{ testimonials[currentIndex].role }}
+              </p>
             </div>
           </div>
 
@@ -75,8 +67,11 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="relative bg-white rounded-2xl p-6 md:p-8 shadow-sm overflow-hidden">
+        <!-- Card 2 (Visible on MD+, index 2) -->
+        <div
+          :key="testimonials[nextIndex].name"
+          class="hidden md:block animate-fade-in relative bg-white rounded-2xl p-6 md:p-8 shadow-sm overflow-hidden"
+        >
           <!-- Left teal border accent -->
           <div
             class="absolute left-0 top-6 md:top-8 bottom-6 md:bottom-8 w-1 bg-power-blue rounded-full"
@@ -84,21 +79,23 @@
 
           <!-- Quote text -->
           <p class="text-gray-600 text-xs md:text-sm leading-relaxed pl-4 mb-6 md:mb-8">
-            Como empresario, necesito que mi local luzca impecable. Power Cleaner me ofrece
-            soluciones profesionales que ahorran tiempo y dinero. Mis clientes siempre comentan lo
-            limpio que se ve todo.
+            {{ testimonials[nextIndex].text }}
           </p>
 
           <!-- Author -->
           <div class="flex items-center gap-3">
             <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Esther"
-              alt="Esther Howard"
-              class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover bg-purple-200"
+              :src="testimonials[nextIndex].avatar"
+              :alt="testimonials[nextIndex].name"
+              class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
             />
             <div>
-              <p class="text-xs md:text-sm font-semibold text-gray-800">Carlos Rodríguez</p>
-              <p class="text-[10px] md:text-xs text-gray-400">Dueño de restaurante</p>
+              <p class="text-xs md:text-sm font-semibold text-gray-800">
+                {{ testimonials[nextIndex].name }}
+              </p>
+              <p class="text-[10px] md:text-xs text-gray-400">
+                {{ testimonials[nextIndex].role }}
+              </p>
             </div>
           </div>
 
@@ -111,33 +108,16 @@
         </div>
       </div>
 
-      <!-- Google Reviews Button -->
+      <!-- Facebook Reviews Link -->
       <div class="mt-6 md:mt-8 text-center">
         <a
-          href="https://maps.app.goo.gl/TeTBG4tcEDZQdHCc9"
+          href="https://www.facebook.com/MERICAN.CLEANING.PRODUCTS/reviews/?id=100085014332432&sk=reviews"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 bg-white text-gray-700 text-xs md:text-sm font-medium px-5 md:px-6 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all border border-gray-200 hover:border-gray-300"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24">
-            <path
-              fill="#4285F4"
-              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-            />
-            <path
-              fill="#34A853"
-              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-            />
-            <path
-              fill="#FBBC05"
-              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-            />
-            <path
-              fill="#EA4335"
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-            />
-          </svg>
-          Mira nuestras opciones de Google
+          <IconFacebook class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+          MIRA NUESTRAS OPINIONES EN FACEBOOK
         </a>
       </div>
     </div>
@@ -145,5 +125,72 @@
 </template>
 
 <script setup>
-// No functions — design only
+import { ref, computed } from 'vue'
+import { IconChevronLeft, IconChevronRight, IconFacebook } from '@/components/Icons'
+
+const testimonials = [
+  {
+    name: 'Carlos CH',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos',
+    role: 'Cliente verificado',
+    rating: 5,
+    text: 'Excelente lugar con todos los productos que se requieren para el hogar o negocio. ¡100% recomendado! 👌',
+  },
+  {
+    name: 'Paola Vela',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Paola',
+    role: 'Cliente verificado',
+    rating: 5,
+    text: 'Me encantan sus productos, son de muy buena calidad y sus precios son muy buenos. Excelente atención de las chicas de la sucursal Benito Juárez.',
+  },
+  {
+    name: 'Mendoza Ale',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ale',
+    role: 'Cliente verificado',
+    rating: 5,
+    text: 'Muy buenos productos y buena atención al cliente en el turno de la mañana, en la sucursal Emilio Carranza.',
+  },
+  {
+    name: 'Nora Patricia Cantón Lara',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Nora',
+    role: 'Cliente verificado',
+    rating: 5,
+    text: 'Muy buen servicio, buenos productos y chicas muy amables.',
+  },
+  {
+    name: 'Francisco Ojeda',
+    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Francisco',
+    role: 'Cliente verificado',
+    rating: 5,
+    text: 'Buenos productos y buen precio.',
+  },
+]
+
+const currentIndex = ref(0)
+const nextIndex = computed(() => (currentIndex.value + 1) % testimonials.length)
+
+const prevTestimonials = () => {
+  currentIndex.value = (currentIndex.value - 1 + testimonials.length) % testimonials.length
+}
+
+const nextTestimonials = () => {
+  currentIndex.value = (currentIndex.value + 1) % testimonials.length
+}
 </script>
+
+<style scoped>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+</style>

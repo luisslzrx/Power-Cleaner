@@ -7,26 +7,24 @@
     <!-- Imagen superior con fondo degradado azul marino -->
     <div class="relative flex items-center justify-center h-44 md:h-56 bg-gray-100">
       <!-- Wishlist button -->
-      <div
-        class="absolute top-3 right-3 z-10 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center"
-        style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(6px)"
-        @click.stop.prevent
+      <button
+        class="absolute top-3 right-3 z-10 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
+        style="
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(6px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        "
+        @click.stop.prevent="toggleFavorite(product)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-3.5 h-3.5 md:w-4 md:h-4 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          />
-        </svg>
-      </div>
+        <IconHeart
+          class="w-4 h-4 transition-colors duration-200"
+          :class="
+            isFavorite(product.id)
+              ? 'text-red-500 fill-current'
+              : 'text-gray-400 hover:text-red-500'
+          "
+        />
+      </button>
 
       <!-- Badge descuento -->
       <div
@@ -87,11 +85,7 @@
           class="text-white text-xs font-semibold px-3 md:px-4 py-2 rounded-lg transition-all hover:opacity-90 flex items-center gap-1 md:gap-1.5 bg-power-secondary flex-shrink-0"
           @click.stop.prevent="addToCart(product)"
         >
-          <img
-            src="/src/assets/icons/cart.svg"
-            alt="Añadir al carrito"
-            class="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 brightness-0 invert"
-          />
+          <IconCart class="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0 text-white" />
           <span class="hidden md:inline">Añadir</span>
         </button>
       </div>
@@ -102,6 +96,8 @@
 <script setup>
 import { computed } from 'vue'
 import { useCarrito } from '../../stores/carrito.js'
+import { useFavorites } from '../../stores/favoritos.js'
+import { IconHeart, IconCart } from '@/components/Icons'
 
 const props = defineProps({
   product: {
@@ -111,6 +107,7 @@ const props = defineProps({
 })
 
 const { addToCart } = useCarrito()
+const { isFavorite, toggleFavorite } = useFavorites()
 
 // Tu tabla de Supabase usa nombres en español (nombre, precio, etc.),
 // pero esta tarjeta estaba leyendo campos en inglés que no existían

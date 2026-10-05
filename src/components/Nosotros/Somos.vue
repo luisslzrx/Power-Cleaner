@@ -88,16 +88,11 @@
             style="background: #b91c1c"
           >
             Conoce nuestros productos
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
+            <img
+              src="/src/assets/icons/arrow-right.svg"
+              alt="Productos"
               class="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.5"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            />
           </button>
         </div>
       </div>
