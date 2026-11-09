@@ -1,21 +1,21 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <section class="max-w-7xl mx-auto px-4 md:px-6 my-20">
+  <section class="max-w-7xl mx-auto px-4 md:px-6">
     <!-- Header -->
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-xl md:text-2xl font-bold text-power-primary">
         Explora nuestras <span class="text-power-accent">sucursales</span>
       </h2>
     </div>
-    <div class="w-full h-px bg-slate-200 mb-10"></div>
+    <div class="w-full h-px bg-slate-200 mb-6 md:mb-10"></div>
 
     <!-- Main Container -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
       <!-- Left Column: Interactive Map -->
-      <div class="lg:col-span-7 xl:col-span-8 relative min-h-[400px] lg:min-h-[600px] flex">
+      <div class="lg:col-span-7 xl:col-span-8 relative min-h-[340px] sm:min-h-[420px] lg:min-h-[600px] flex">
         <div
           id="map-container"
-          class="w-full h-[400px] lg:h-auto min-h-full rounded-2xl overflow-hidden shadow-lg border border-slate-100 transition-all duration-300 z-10"
+          class="w-full h-[340px] sm:h-[420px] lg:h-auto min-h-full rounded-2xl overflow-hidden shadow-md lg:shadow-lg border border-slate-100 transition-all duration-300 z-10"
         ></div>
       </div>
 
@@ -477,12 +477,12 @@ onMounted(() => {
       attributionControl: true,
     }).setView(initialShowroom.coords, 14)
 
-    // Add CartoDB Voyager Tile Layer (elegant color style)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    // Capa de mapa con OpenStreetMap (100% gratuita, libre y sin necesidad de API key)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 20,
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+      subdomains: ['a', 'b', 'c'],
+      maxZoom: 19,
     }).addTo(mapInstance)
 
     // Custom positioned zoom control at bottom right
@@ -512,10 +512,19 @@ onMounted(() => {
         mapInstance.invalidateSize()
       }
     }, 200)
+
+    window.addEventListener('resize', handleResize)
   })
 })
 
+const handleResize = () => {
+  if (mapInstance) {
+    mapInstance.invalidateSize()
+  }
+}
+
 onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
   // Cleanup Leaflet instance to prevent memory leaks and container errors
   if (mapInstance) {
     mapInstance.remove()

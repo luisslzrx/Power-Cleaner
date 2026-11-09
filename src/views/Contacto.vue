@@ -9,9 +9,9 @@ import Franquicias from '@/components/Inicio/Franquicias.vue'
 <template>
   <div class="min-h-screen bg-white">
     <BannerContacto />
-    <Contactanos class="my-16" />
-    <Contactanos2 />
-    <Preguntas class="my-16" />
-    <Franquicias class="my-16" />
+    <Contactanos class="my-8 sm:my-12 md:my-16" />
+    <Contactanos2 class="my-8 sm:my-12 md:my-16" />
+    <Preguntas class="my-8 sm:my-12 md:my-16" />
+    <Franquicias class="my-8 sm:my-12 md:my-16" />
   </div>
 </template>

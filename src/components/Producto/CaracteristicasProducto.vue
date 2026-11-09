@@ -222,7 +222,7 @@
                 alt="✓"
                 class="w-5 h-5 flex-shrink-0"
               />
-              Envío seguro
+              Atención directa por WhatsApp
             </li>
           </ul>
 
@@ -273,21 +273,26 @@
             <p class="text-gray-600 leading-relaxed">{{ productDescription }}</p>
           </div>
 
-          <!-- Botones CTA -->
-          <div class="flex flex-col md:flex-row items-center gap-3 mt-1">
+          <!-- Botón CTA: Consultar disponibilidad -->
+          <div class="flex flex-col gap-2 mt-2">
             <button
-              @click="handleBuyNow"
-              class="flex-1 text-white text-sm font-bold py-3 px-4 md:px-6 rounded-xl transition-all hover:opacity-90"
-              style="background: #1d4e89"
+              @click="handleConsultarDisponibilidad"
+              class="w-full text-white text-base font-bold py-3.5 px-6 rounded-xl transition-all duration-200 hover:opacity-95 hover:shadow-md flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] shadow-sm"
             >
-              Comprar ahora
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 flex-shrink-0 fill-current"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              <span>Consultar disponibilidad</span>
             </button>
-            <button
-              @click="handleAddToCart"
-              class="flex-1 text-blue-600 text-sm font-semibold py-3 px-4 md:px-6 rounded-xl border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all"
-            >
-              Añadir al carrito
-            </button>
+            <p class="text-xs text-center text-gray-500 mt-1">
+              Envíos en línea temporalmente no disponibles. Consulta existencias y entrega directa vía WhatsApp.
+            </p>
           </div>
         </div>
       </div>
@@ -299,8 +304,6 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { supabase } from '../../supabase'
-import { useCarrito } from '../../stores/carrito.js'
-import { createCheckout } from '../../services/checkout'
 
 const props = defineProps({
   id: {
@@ -327,8 +330,6 @@ const variants = ref([])
 const selectedVariant = ref(null)
 
 const isImageModalOpen = ref(false)
-
-const { addToCart } = useCarrito()
 
 const hasVariants = computed(() => {
   return variants.value.length > 1
@@ -358,40 +359,20 @@ const selectVariant = (variant) => {
   updateProductDisplay(variant)
 }
 
-const buildCartItem = () => {
+const WHATSAPP_PHONE = '5213122454500'
+
+const handleConsultarDisponibilidad = () => {
+  if (!product.value) return
+
   const item = selectedVariant.value || product.value
-
-  const variantName =
-    item.variant_name && item.variant_name !== 'Única' ? ` ${item.variant_name}` : ''
-
-  return {
-    ...item,
-    name: `${item.name}${variantName}`,
-    price: Number(item.price),
-    image: item.image || productImage.value,
-  }
-}
-
-const handleAddToCart = () => {
-  if (!product.value) return
-  addToCart(buildCartItem())
-}
-
-const handleBuyNow = async () => {
-  if (!product.value) return
-
-  try {
-    const item = {
-      ...buildCartItem(),
-      quantity: 1,
-    }
-
-    const url = await createCheckout([item])
-    window.location.href = url
-  } catch (error) {
-    console.error(error)
-    alert('Error al iniciar el pago')
-  }
+  const variantText =
+    item.variant_name && item.variant_name !== 'Única'
+      ? ` (Presentación: ${item.variant_name})`
+      : ''
+  const priceText = productPrice.value && !isNaN(productPrice.value) ? ` - $${productPrice.value}` : ''
+  const text = `Hola, me gustaría consultar la disponibilidad del producto: *${productName.value}*${variantText}${priceText}`
+  const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`
+  window.open(url, '_blank')
 }
 
 const loadProduct = async (productId) => {

@@ -8,6 +8,11 @@ export default {
         'power-secondary': '#1D4E89',
         'power-accent': '#C1121F',
       },
+      fontFamily: {
+        sans: ['Geologica', 'sans-serif'],
+        LarqGeologica: ['Geologica', 'sans-serif'],
+        fontLarqGeologica: ['Geologica', 'sans-serif'],
+      },
     },
   },
   plugins: [],

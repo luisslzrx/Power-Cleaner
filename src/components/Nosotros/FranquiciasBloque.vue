@@ -133,16 +133,17 @@
             </ul>
 
             <!-- CTA Button -->
-            <button
-              class="flex items-center gap-2 bg-power-accent text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mt-6 md:mt-8"
+            <router-link
+              to="/venta-de-franquicias"
+              class="inline-flex items-center gap-2 bg-power-accent text-white text-xs sm:text-sm font-bold px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl w-fit transition-all hover:opacity-90 mt-6 sm:mt-8 active:scale-95 shadow-md"
             >
-              Quiero mi franquicia
+              <span>Quiero mi franquicia</span>
               <img
                 src="/src/assets/icons/arrow-right.svg"
                 alt="Franquicia"
                 class="w-4 h-4"
               />
-            </button>
+            </router-link>
           </div>
         </div>
       </div>

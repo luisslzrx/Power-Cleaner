@@ -10,10 +10,10 @@ import Diferenciadores from '@/components/Nosotros/Diferenciadores.vue'
 <template>
   <div class="min-h-screen bg-white">
     <BannerNosotros />
-    <Somos class="my-16" />
-    <Diferenciadores class="my-16" />
-    <Mision class="my-16" />
-    <FranquiciasBloque class="my-16" />
-    <ModalidadesDeVenta class="my-16" />
+    <Somos class="my-8 sm:my-12 md:my-16" />
+    <Diferenciadores class="my-8 sm:my-12 md:my-16" />
+    <Mision class="my-8 sm:my-12 md:my-16" />
+    <FranquiciasBloque class="my-8 sm:my-12 md:my-16" />
+    <ModalidadesDeVenta class="my-8 sm:my-12 md:my-16" />
   </div>
 </template>

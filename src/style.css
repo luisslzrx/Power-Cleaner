@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html,
+  body {
+    font-family: 'Geologica', sans-serif;
+  }
+}
+
 @layer components {
   /* Botones azules (Power Primary) */
   button.bg-power-primary,

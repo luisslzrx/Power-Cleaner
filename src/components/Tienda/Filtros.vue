@@ -1,7 +1,7 @@
 <template>
-  <!-- Barra lateral de filtros para versión de escritorio y barra superior para móviles -->
-  <aside class="lg:order-last order-first">
-    <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm sticky top-24">
+  <!-- Barra lateral de filtros -->
+  <aside class="w-full">
+    <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm md:sticky md:top-24">
       <h3 class="text-sm font-bold text-gray-800 mb-4">Filtrar productos</h3>
 
       <!-- FILTRO: Departamento -->

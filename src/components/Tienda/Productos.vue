@@ -1,6 +1,6 @@
 <template>
   <!-- ref="sectionRef": Referencia al inicio del catálogo para centrar la pantalla aquí al cambiar de página (ver scrollToProducts) -->
-  <section ref="sectionRef" class="py-10">
+  <section ref="sectionRef" id="catalogo-productos" class="py-10">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
       <div class="mb-6">
         <h2 class="text-xl md:text-2xl font-bold text-power-primary">
@@ -9,26 +9,115 @@
         <div class="w-full h-px bg-blue-500 mt-2"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
-        <div>
-          <div class="flex items-center justify-between gap-3 mb-5">
-            <p class="text-sm text-gray-500">{{ sortedProducts.length }} productos encontrados</p>
-
-            <select
-              v-model="selectedOrder"
-              class="border border-gray-200 rounded-xl px-3 py-2 text-sm text-gray-600 outline-none focus:border-power-primary"
+      <!-- Barra superior de controles: Conteo, Filtros en móvil y Ordenamiento -->
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 bg-gray-50/80 p-3.5 sm:p-4 rounded-2xl border border-gray-100"
+      >
+        <!-- Izquierda: Botón de Filtros en móvil + Conteo de productos -->
+        <div class="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
+          <!-- Botón Filtros (visible solo en responsive < md) -->
+          <button
+            @click="isMobileFiltersOpen = true"
+            class="md:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-power-primary text-white text-xs sm:text-sm font-bold shadow-sm hover:bg-power-secondary transition-all active:scale-95"
+            aria-label="Abrir filtros de productos"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 text-power-accent"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
             >
-              <option value="default">Ordenar</option>
-              <option value="price-asc">Más barato</option>
-              <option value="price-desc">Más caro</option>
-              <option value="name-asc">Nombre A-Z</option>
-              <option value="name-desc">Nombre Z-A</option>
-            </select>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              />
+            </svg>
+            <span>Filtros</span>
+            <span
+              v-if="activeFiltersCount > 0"
+              class="ml-0.5 w-5 h-5 rounded-full bg-power-accent text-white text-[11px] font-extrabold flex items-center justify-center"
+            >
+              {{ activeFiltersCount }}
+            </span>
+          </button>
 
+          <p class="text-xs sm:text-sm text-gray-500">
+            <span class="font-bold text-gray-800">{{ sortedProducts.length }}</span> productos encontrados
+          </p>
+        </div>
+
+        <!-- Derecha: Selector de Ordenamiento -->
+        <div class="flex items-center justify-end gap-2 w-full sm:w-auto">
+          <label class="hidden sm:inline text-xs text-gray-400 font-medium whitespace-nowrap">Ordenar por:</label>
+          <select
+            v-model="selectedOrder"
+            class="w-full sm:w-auto border border-gray-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-gray-700 bg-white outline-none focus:border-power-primary shadow-sm cursor-pointer"
+          >
+            <option value="default">Relevancia</option>
+            <option value="price-asc">Precio: Más barato</option>
+            <option value="price-desc">Precio: Más caro</option>
+            <option value="name-asc">Nombre: A - Z</option>
+            <option value="name-desc">Nombre: Z - A</option>
+          </select>
+        </div>
+
+        <!-- Chips de filtros activos en móvil -->
+        <div
+          v-if="activeFiltersCount > 0"
+          class="w-full flex flex-wrap items-center gap-1.5 pt-2 border-t border-gray-200/60 md:hidden"
+        >
+          <span class="text-[11px] text-gray-400 font-semibold uppercase">Filtros activos:</span>
+
+          <span
+            v-if="selectedDepartment !== 'all'"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-power-primary text-white shadow-xs"
+          >
+            {{ selectedDepartment }}
+            <button @click="clearDepartment" class="hover:text-red-200">✕</button>
+          </span>
+
+          <span
+            v-if="selectedCategory !== 'all'"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-power-accent text-white shadow-xs"
+          >
+            {{ selectedCategory }}
+            <button @click="clearCategory" class="hover:text-white/80">✕</button>
+          </span>
+
+          <button
+            @click="clearAllFilters"
+            class="text-xs text-gray-500 hover:text-power-accent underline ml-auto"
+          >
+            Limpiar filtros
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenedor principal: Filtros del lado IZQUIERDO y Productos del lado DERECHO -->
+      <div class="grid grid-cols-1 md:grid-cols-[260px_1fr] lg:grid-cols-[280px_1fr] gap-6 lg:gap-8 items-start">
+        <!-- Columna IZQUIERDA: Filtros (solo visible en pantallas md en adelante) -->
+        <aside class="hidden md:block w-full">
+          <Filtros
+            :selected-department="selectedDepartment"
+            :selected-category="selectedCategory"
+            :departments="departments"
+            :available-categories="availableCategories"
+            @select-department="selectDepartment"
+            @select-category="selectCategory"
+            @clear-department="clearDepartment"
+            @clear-category="clearCategory"
+          />
+        </aside>
+
+        <!-- Columna DERECHA: Listado de Productos -->
+        <div class="min-w-0 w-full">
+          <!-- Cuadrícula responsive de productos -->
           <div
             v-if="sortedProducts.length > 0"
-            class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5"
+            class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5"
           >
             <ProductoCard
               v-for="product in paginatedProducts"
@@ -81,24 +170,95 @@
             No hay productos con estos filtros.
           </div>
         </div>
-
-        <Filtros
-          :selected-department="selectedDepartment"
-          :selected-category="selectedCategory"
-          :departments="departments"
-          :available-categories="availableCategories"
-          @select-department="selectDepartment"
-          @select-category="selectCategory"
-          @clear-department="clearDepartment"
-          @clear-category="clearCategory"
-        />
       </div>
     </div>
+
+    <!-- Drawer / Modal Móvil de Filtros -->
+    <Teleport to="body">
+      <div
+        v-if="isMobileFiltersOpen"
+        class="fixed inset-0 z-50 flex md:hidden"
+        role="dialog"
+        aria-modal="true"
+      >
+        <!-- Backdrop oscuro -->
+        <div
+          class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+          @click="isMobileFiltersOpen = false"
+        ></div>
+
+        <!-- Panel lateral deslizable desde la izquierda -->
+        <div
+          class="relative w-[85%] max-w-sm h-full bg-white shadow-2xl flex flex-col z-10 animate-fade-in-right"
+        >
+          <!-- Header del drawer móvil -->
+          <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-power-accent"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
+              </svg>
+              <h3 class="font-bold text-gray-900 text-base">Filtros y Categorías</h3>
+            </div>
+            <button
+              class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors"
+              aria-label="Cerrar filtros"
+              @click="isMobileFiltersOpen = false"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Contenido scrolleable con el componente de filtros -->
+          <div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+            <Filtros
+              :selected-department="selectedDepartment"
+              :selected-category="selectedCategory"
+              :departments="departments"
+              :available-categories="availableCategories"
+              @select-department="selectDepartment"
+              @select-category="selectCategory"
+              @clear-department="clearDepartment"
+              @clear-category="clearCategory"
+            />
+          </div>
+
+          <!-- Footer con botón para aplicar y cerrar -->
+          <div class="p-4 border-t border-gray-100 bg-gray-50 flex gap-2">
+            <button
+              v-if="activeFiltersCount > 0"
+              @click="clearAllFilters"
+              class="px-4 py-3 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 hover:bg-gray-100 transition-colors"
+            >
+              Limpiar
+            </button>
+            <button
+              @click="isMobileFiltersOpen = false"
+              class="flex-1 bg-power-primary hover:bg-power-secondary text-white font-bold py-3 rounded-xl transition-all shadow-md text-sm flex items-center justify-center gap-1.5"
+            >
+              <span>Ver {{ sortedProducts.length }} productos</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </section>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../../supabase'
 import ProductoCard from '@/components/Inicio/ProductoCard.vue'
@@ -117,6 +277,28 @@ const selectedCategory = ref(route.query.category || 'all') // Categoría activa
 const selectedOrder = ref('default') // Criterio de ordenación por precio o nombre
 const currentPage = ref(1) // Página actual visible en el paginador
 const itemsPerPage = 12 // Límite de productos mostrados por página
+const isMobileFiltersOpen = ref(false) // Control del drawer / modal de filtros en móvil
+
+// Cantidad de filtros activos
+const activeFiltersCount = computed(() => {
+  let count = 0
+  if (selectedDepartment.value && selectedDepartment.value !== 'all') count++
+  if (selectedCategory.value && selectedCategory.value !== 'all') count++
+  return count
+})
+
+// Bloquea el scroll del body cuando el drawer de filtros está abierto
+watch(isMobileFiltersOpen, (open) => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = open ? 'hidden' : ''
+  }
+})
+
+onBeforeUnmount(() => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+  }
+})
 
 /**
  * Consulta a Supabase para cargar todos los productos de la tabla 'productos'.
@@ -341,6 +523,15 @@ const clearDepartment = () => {
  * Restablece el filtro de categoría activo manteniendo el departamento si lo hubiera.
  */
 const clearCategory = () => {
+  selectedCategory.value = 'all'
+  updateUrlFilters()
+}
+
+/**
+ * Restablece todos los filtros aplicados.
+ */
+const clearAllFilters = () => {
+  selectedDepartment.value = 'all'
   selectedCategory.value = 'all'
   updateUrlFilters()
 }

@@ -138,6 +138,14 @@ onMounted(async () => {
     const { data, error } = await supabase
       .from('categories')
       .select('id, name, department, image')
+      // =========================================================================
+      // 📸 FILTRO TEMPORAL: Mostrar solo categorías que tienen foto
+      // Para quitar este filtro en el futuro y mostrar todas las categorías,
+      // simplemente comenta o elimina las 2 líneas de abajo (.not y .neq):
+      // =========================================================================
+      .not('image', 'is', null)
+      .neq('image', '')
+      // =========================================================================
       .order('id', { ascending: true })
       .limit(15)
 

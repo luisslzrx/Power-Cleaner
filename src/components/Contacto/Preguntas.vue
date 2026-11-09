@@ -1,7 +1,7 @@
 <template>
   <!-- Preguntas Frecuentes Section -->
   <section class="bg-[#eef0f8]">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16">
       <!-- Header row -->
       <div class="flex items-center justify-between mb-1">
         <h2 class="text-lg md:text-xl font-semibold text-power-primary">
@@ -10,7 +10,7 @@
       </div>
 
       <!-- Underline -->
-      <div class="w-full h-px bg-blue-500 mb-4 md:mb-6"></div>
+      <div class="w-full h-px bg-blue-500 mb-6 md:mb-8"></div>
 
       <!-- Acordeón -->
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -24,9 +24,9 @@
             <!-- Pregunta -->
             <button
               @click="toggle(index)"
-              class="w-full flex items-center justify-between p-4 md:p-6 px-4 md:px-8 bg-transparent border-none cursor-pointer text-left gap-3 md:gap-4"
+              class="w-full flex items-center justify-between p-3.5 sm:p-5 md:p-6 px-4 sm:px-6 md:px-8 bg-transparent border-none cursor-pointer text-left gap-3 md:gap-4"
             >
-              <div class="flex items-center gap-3 md:gap-4">
+              <div class="flex items-center gap-3 md:gap-4 flex-1">
                 <div
                   class="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                   :style="{ backgroundColor: activeIndex === index ? '#b52426' : '#fce8e8' }"
@@ -47,7 +47,7 @@
                     />
                   </svg>
                 </div>
-                <span class="text-sm md:text-base font-bold text-[#0b1a2e]">{{
+                <span class="text-xs sm:text-sm md:text-base font-bold text-[#0b1a2e] leading-snug">{{
                   item.question
                 }}</span>
               </div>
@@ -70,9 +70,9 @@
             <!-- Respuesta -->
             <div
               v-show="activeIndex === index"
-              class="px-4 md:px-8 pb-4 md:pb-7 pl-16 md:pl-22 border-t border-[#f0f1f5]"
+              class="px-4 sm:px-6 md:px-8 pb-4 md:pb-7 pl-4 sm:pl-16 md:pl-22 border-t border-[#f0f1f5]"
             >
-              <p class="text-xs md:text-sm text-[#43474e] leading-[1.75] mt-3 md:mt-5">
+              <p class="text-xs sm:text-sm text-[#43474e] leading-relaxed mt-3 md:mt-5">
                 {{ item.answer }}
               </p>
             </div>
@@ -89,9 +89,9 @@
             <!-- Pregunta -->
             <button
               @click="toggle(index + 4)"
-              class="w-full flex items-center justify-between p-4 md:p-6 px-4 md:px-8 bg-transparent border-none cursor-pointer text-left gap-3 md:gap-4"
+              class="w-full flex items-center justify-between p-3.5 sm:p-5 md:p-6 px-4 sm:px-6 md:px-8 bg-transparent border-none cursor-pointer text-left gap-3 md:gap-4"
             >
-              <div class="flex items-center gap-3 md:gap-4">
+              <div class="flex items-center gap-3 md:gap-4 flex-1">
                 <div
                   class="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                   :style="{ backgroundColor: activeIndex === index + 4 ? '#b52426' : '#fce8e8' }"
@@ -112,7 +112,7 @@
                     />
                   </svg>
                 </div>
-                <span class="text-sm md:text-base font-bold text-[#0b1a2e]">{{
+                <span class="text-xs sm:text-sm md:text-base font-bold text-[#0b1a2e] leading-snug">{{
                   item.question
                 }}</span>
               </div>
@@ -135,9 +135,9 @@
             <!-- Respuesta -->
             <div
               v-show="activeIndex === index + 4"
-              class="px-4 md:px-8 pb-4 md:pb-7 pl-16 md:pl-22 border-t border-[#f0f1f5]"
+              class="px-4 sm:px-6 md:px-8 pb-4 md:pb-7 pl-4 sm:pl-16 md:pl-22 border-t border-[#f0f1f5]"
             >
-              <p class="text-xs md:text-sm text-[#43474e] leading-[1.75] mt-3 md:mt-5">
+              <p class="text-xs sm:text-sm text-[#43474e] leading-relaxed mt-3 md:mt-5">
                 {{ item.answer }}
               </p>
             </div>

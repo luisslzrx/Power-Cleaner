@@ -69,76 +69,80 @@
           </ul>
 
           <!-- Botón outline -->
-          <button
-            class="w-full py-3 md:py-[18px] border-2 border-[#b52426] rounded-xl bg-transparent text-[#b52426] text-xs font-bold tracking-[0.08em] cursor-pointer"
+          <router-link
+            to="/tienda"
+            class="block w-full py-3 sm:py-3.5 md:py-[18px] border-2 border-power-accent rounded-xl bg-transparent text-power-accent text-xs font-bold tracking-[0.08em] text-center hover:bg-power-accent hover:text-white transition-all active:scale-[0.99]"
           >
             VER TIENDA ONLINE
-          </button>
+          </router-link>
         </div>
 
         <!-- Card: Venta al Mayoreo (oscura) -->
-        <div class="bg-[#0b1a2e] rounded-2xl p-6 md:p-12 relative overflow-hidden">
-          <!-- Decorative circle -->
-          <div
-            class="absolute -top-8 -right-8 w-30 h-30 bg-[#1e3a5f] rounded-full opacity-50"
-          ></div>
+        <div class="bg-[#0b1a2e] rounded-2xl p-6 sm:p-8 md:p-12 relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <!-- Decorative circle -->
+            <div
+              class="absolute -top-8 -right-8 w-30 h-30 bg-[#1e3a5f] rounded-full opacity-50"
+            ></div>
 
-          <!-- Ícono -->
-          <img
-            src="/src/assets/icons/store-office-coral.svg"
-            alt="Mayoreo"
-            class="w-8 h-8 md:w-10 md:h-10 block mb-4 md:mb-6"
-          />
+            <!-- Ícono -->
+            <img
+              src="/src/assets/icons/store-office-coral.svg"
+              alt="Mayoreo"
+              class="w-8 h-8 md:w-10 md:h-10 block mb-4 md:mb-6"
+            />
 
-          <!-- Título -->
-          <p class="text-sm md:text-base font-normal text-white mb-2 md:mb-3">Venta al Mayoreo</p>
+            <!-- Título -->
+            <p class="text-sm md:text-base font-normal text-white mb-2 md:mb-3">Venta al Mayoreo</p>
 
-          <!-- Descripción -->
-          <p class="text-sm md:text-base font-normal text-[#86a0cd] leading-relaxed mb-6 md:mb-8">
-            Suministros de alto volumen para hoteles, hospitales y corporativos. Soluciones
-            logísticas eficientes y precios escalables.
-          </p>
+            <!-- Descripción -->
+            <p class="text-sm md:text-base font-normal text-[#86a0cd] leading-relaxed mb-6 md:mb-8">
+              Suministros de alto volumen para hoteles, hospitales y corporativos. Soluciones
+              logísticas eficientes y precios escalables.
+            </p>
 
-          <!-- Lista -->
-          <ul class="list-none p-0 mb-6 md:mb-10 flex flex-col gap-3 md:gap-4">
-            <li class="flex items-center gap-3">
-              <img
-                src="/src/assets/icons/check-circle-coral.svg"
-                alt="Sí"
-                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
-              />
-              <span class="text-sm md:text-base font-bold text-white"
-                >Precios competitivos por volumen</span
-              >
-            </li>
-            <li class="flex items-center gap-3">
-              <img
-                src="/src/assets/icons/check-circle-coral.svg"
-                alt="Sí"
-                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
-              />
-              <span class="text-sm md:text-base font-bold text-white"
-                >Fichas técnicas COFEPRIS</span
-              >
-            </li>
-            <li class="flex items-center gap-3">
-              <img
-                src="/src/assets/icons/check-circle-coral.svg"
-                alt="Sí"
-                class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
-              />
-              <span class="text-sm md:text-base font-bold text-white"
-                >Crédito comercial para empresas</span
-              >
-            </li>
-          </ul>
+            <!-- Lista -->
+            <ul class="list-none p-0 mb-6 md:mb-10 flex flex-col gap-3 md:gap-4">
+              <li class="flex items-center gap-3">
+                <img
+                  src="/src/assets/icons/check-circle-coral.svg"
+                  alt="Sí"
+                  class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+                />
+                <span class="text-sm md:text-base font-bold text-white"
+                  >Precios competitivos por volumen</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/src/assets/icons/check-circle-coral.svg"
+                  alt="Sí"
+                  class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+                />
+                <span class="text-sm md:text-base font-bold text-white"
+                  >Fichas técnicas COFEPRIS</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/src/assets/icons/check-circle-coral.svg"
+                  alt="Sí"
+                  class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
+                />
+                <span class="text-sm md:text-base font-bold text-white"
+                  >Crédito comercial para empresas</span
+                >
+              </li>
+            </ul>
+          </div>
 
           <!-- Botón relleno -->
-          <button
-            class="w-full py-3 md:py-[18px] border-none rounded-xl bg-[#b52426] text-white text-xs font-bold tracking-[0.08em] cursor-pointer"
+          <router-link
+            to="/surtimos-tu-negocio"
+            class="block w-full py-3 sm:py-3.5 md:py-[18px] border-none rounded-xl bg-power-accent text-white text-xs font-bold tracking-[0.08em] text-center hover:opacity-90 transition-all active:scale-[0.99] shadow-md"
           >
             SOLICITAR COTIZACIÓN
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
