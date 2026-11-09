@@ -55,11 +55,6 @@
         </span>
       </div>
 
-      <!-- Descripción corta -->
-      <p v-if="description" class="text-xs text-gray-400 leading-relaxed line-clamp-2">
-        {{ description }}
-      </p>
-
       <!-- Precio + botón -->
       <div class="flex items-end justify-between gap-2 md:gap-4 mt-0.5">
         <!-- Precio -->
