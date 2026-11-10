@@ -42,7 +42,7 @@
             to="/tienda"
             class="flex items-center justify-center gap-2 text-white text-sm font-semibold px-6 md:px-7 py-3 rounded-lg w-fit transition-all hover:opacity-90 mx-auto md:mx-0 bg-red-600 hover:scale-[1.01] active:scale-[0.99]"
           >
-            <span>Comprar Ahora</span>
+            <span>Conoce nuestros productos</span>
             <IconArrowRight class="w-4 h-4 text-white" />
           </router-link>
         </div>

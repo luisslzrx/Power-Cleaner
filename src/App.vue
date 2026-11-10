@@ -1,18 +1,23 @@
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Carrito from './components/Carrito.vue'
 import WhatsAppButton from './components/WhatsAppButton.vue'
+
+const route = useRoute()
+const isGestionRoute = computed(() => route.path.startsWith('/gestion'))
 </script>
 
 <template>
-  <Header />
-  <div class="app-container">
+  <Header v-if="!isGestionRoute" />
+  <div :class="isGestionRoute ? 'w-full min-h-screen' : 'app-container'">
     <router-view />
   </div>
-  <Footer />
-  <Carrito />
-  <WhatsAppButton />
+  <Footer v-if="!isGestionRoute" />
+  <Carrito v-if="!isGestionRoute" />
+  <WhatsAppButton v-if="!isGestionRoute" />
 </template>
 
 <style>

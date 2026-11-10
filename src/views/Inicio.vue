@@ -12,6 +12,7 @@ import MaquilaBanner from '@/components/Inicio/MaquilaBanner.vue'
 import ProductosMayoreo from '@/components/Inicio/ProductosMayoreo.vue'
 import ProductosPaquetes from '@/components/Inicio/ProductosPaquetes.vue'
 import ProductosAutomotriz from '@/components/Inicio/ProductosAutomotriz.vue'
+import ProductosCategoria from '@/components/Inicio/ProductosCategoria.vue'
 </script>
 
 <template>
@@ -22,6 +23,7 @@ import ProductosAutomotriz from '@/components/Inicio/ProductosAutomotriz.vue'
     <Categorias class="my-16 animate-fade-in-up" />
     <ProductosRecientes class="my-16 animate-fade-in-up" />
     <Subcategorias class="my-16 animate-fade-in-up" />
+    <ProductosCategoria class="my-16 animate-fade-in-up" />
     <Franquicias class="my-16 animate-fade-in-up" />
     <Testimoniales class="my-16 animate-fade-in-up" />
     <ProductosMayoreo class="my-16 animate-fade-in-up" />

@@ -2,6 +2,8 @@
   <div>
     <CaracteristicasProducto :id="route.params.id" @loaded="handleLoaded" />
 
+    <ProductReviews :product-id="route.params.id" />
+
     <ProductosSimilares
       v-if="productCategory"
       :category="productCategory"
@@ -14,6 +16,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import CaracteristicasProducto from '@/components/Producto/CaracteristicasProducto.vue'
+import ProductReviews from '@/components/Producto/ProductReviews.vue'
 import ProductosSimilares from '@/components/Producto/ProductosSimilares.vue'
 
 const route = useRoute()

@@ -22,10 +22,10 @@ export const SOLO_PRODUCTOS_CON_FOTO = true
 // Interceptor global de Supabase: aplica el filtro en cualquier consulta a la tabla 'productos'
 const originalFrom = supabase.from.bind(supabase)
 
-supabase.from = function (relation) {
+supabase.from = function (relation, options = {}) {
   const query = originalFrom(relation)
 
-  if (SOLO_PRODUCTOS_CON_FOTO && relation === 'productos') {
+  if (SOLO_PRODUCTOS_CON_FOTO && relation === 'productos' && !options?.bypassFotoFilter) {
     const originalSelect = query.select.bind(query)
     query.select = function (...args) {
       return originalSelect(...args)

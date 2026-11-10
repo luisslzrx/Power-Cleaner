@@ -4,7 +4,7 @@
       <!-- Header row -->
       <div class="flex items-center justify-between mb-1">
         <h2 class="text-lg md:text-xl font-semibold text-power-primary">
-          Lo más vendido en <span class="text-power-accent">Power Cleaner</span>
+          Nuestros Productos <span class="text-power-accent">Destacados</span>
         </h2>
 
         <!-- Controls & Ver más -->
@@ -45,9 +45,9 @@
         ref="carouselRef"
         class="flex gap-3 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide py-1"
       >
-        <!-- Limitamos a los primeros 10 productos usando .slice(0, 10) -->
+        <!-- Productos destacados seleccionados -->
         <ProductoCard
-          v-for="product in products.slice(0, 10)"
+          v-for="product in products"
           :key="product.id"
           :product="product"
           class="snap-start shrink-0 w-[calc(50%-6px)] md:w-[calc(20%-19.2px)]"
@@ -64,35 +64,46 @@ import ProductoCard from './ProductoCard.vue'
 import { IconChevronLeft, IconChevronRight } from '@/components/Icons'
 
 // =====================================================================================
-// NOTA DE CONFIGURACIÓN PARA EL DESARROLLADOR:
-// Puedes seleccionar qué categoría deseas mostrar en esta sección de "Destacados"
-// cambiando el valor de 'selectedCategory' a continuación.
+// ⭐ CONFIGURACIÓN DE PRODUCTOS DESTACADOS:
+// Coloca aquí los IDs de los 10 productos (o los que tú quieras) que deseas que aparezcan
+// en la sección de Destacados. Se mostrarán exactamente en el orden en que los anotes aquí.
 //
-// Valores válidos (ejemplos): 'Trapeadores', 'Escobas', 'Detergentes', 'Aroma Ambiental', etc.
-// Si deseas mostrar todos los productos sin filtrar por categoría, define el valor como null.
+// Ejemplo: const DESTACADOS_IDS = [12, 5, 23, 40, 8, 19, 31, 15, 2, 7]
 // =====================================================================================
-const selectedCategory = ref('Trapeadores')
+const DESTACADOS_IDS = [
+  // Reemplaza estos números con los IDs reales de tus 10 productos favoritos:
+  869, 879, 811, 743, 731, 879, 203, 166, 12, 13,
+]
 
 const products = ref([])
 const carouselRef = ref(null)
 
 const getProducts = async () => {
-  let query = supabase.from('productos').select('*')
+  try {
+    // Si el arreglo está vacío, carga los primeros 10 productos como respaldo
+    if (!DESTACADOS_IDS || DESTACADOS_IDS.length === 0) {
+      const { data, error } = await supabase.from('productos').select('*').limit(10)
 
-  // Aplicar filtro si se seleccionó una categoría específica
-  if (selectedCategory.value) {
-    query = query.eq('category', selectedCategory.value)
-  }
+      if (error) throw error
+      products.value = data || []
+      return
+    }
 
-  const { data, error } = await query
+    // Consultar a Supabase únicamente los productos cuyos IDs coincidan con la lista
+    const { data, error } = await supabase.from('productos').select('*').in('id', DESTACADOS_IDS)
 
-  console.log('DATA:', data)
-  console.log('ERROR:', error)
+    if (error) throw error
 
-  if (error) {
-    console.error(error)
-  } else {
-    products.value = data || []
+    // Ordenar los productos resultantes para respetar el orden exacto del arreglo DESTACADOS_IDS
+    const sorted = [...(data || [])].sort((a, b) => {
+      const indexA = DESTACADOS_IDS.findIndex((id) => String(id) === String(a.id))
+      const indexB = DESTACADOS_IDS.findIndex((id) => String(id) === String(b.id))
+      return (indexA === -1 ? 9999 : indexA) - (indexB === -1 ? 9999 : indexB)
+    })
+
+    products.value = sorted
+  } catch (err) {
+    console.error('Error al cargar productos destacados por ID:', err)
   }
 }
 

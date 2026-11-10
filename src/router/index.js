@@ -93,6 +93,11 @@ const router = createRouter({
       name: 'Perfil',
       component: () => import('../views/ProfileView.vue'),
     },
+    {
+      path: '/gestion',
+      name: 'Gestion',
+      component: () => import('../views/GestionView.vue'),
+    },
   ],
 
   // Control del desplazamiento (scroll) en las navegaciones:
