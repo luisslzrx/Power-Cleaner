@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Inicio from '@/views/Inicio.vue'
 import Producto from '@/views/Producto.vue'
 import Tienda from '@/views/Tienda.vue'
+import { updateSEO } from '@/utils/seo'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,16 +12,37 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Inicio,
+      meta: {
+        title: 'Power Cleaner | Productos y Artículos de Limpieza',
+        description:
+          'Descubre Power Cleaner, tu tienda de productos y artículos de limpieza. Encuentra soluciones de calidad de nuestra marca y otras marcas para cada necesidad.',
+        keywords:
+          'Power Cleaner, productos de limpieza, artículos de limpieza, tienda de productos de limpieza',
+      },
     },
     {
       path: '/tienda',
       name: 'Tienda',
       component: Tienda,
+      meta: {
+        title: 'Tienda en Línea | Power Cleaner - Catálogo de Productos de Limpieza',
+        description:
+          'Explora nuestra tienda en línea Power Cleaner. Compra productos y artículos de limpieza de alta calidad para el hogar, negocios e industria con envío a todo México.',
+        keywords:
+          'tienda de productos de limpieza, comprar productos de limpieza, catálogo Power Cleaner, artículos de limpieza online, productos de limpieza México',
+      },
     },
     {
       path: '/producto/:id',
       name: 'Producto',
       component: Producto,
+      meta: {
+        title: 'Cargando producto... | Power Cleaner',
+        description:
+          'Consulta detalles, precios y presentaciones de productos de limpieza en Power Cleaner.',
+        keywords:
+          'Power Cleaner, producto de limpieza, comprar producto de limpieza',
+      },
     },
     {
       path: '/buscar',
@@ -31,6 +53,13 @@ const router = createRouter({
       path: '/nosotros',
       name: 'Nosotros',
       component: () => import('@/views/Nosotros.vue'),
+      meta: {
+        title: 'Nosotros | Conoce Power Cleaner y Nuestra Marca',
+        description:
+          'Conoce Power Cleaner, nuestra historia y compromiso con la limpieza. Ofrecemos productos y soluciones de calidad para hogares, negocios y más.',
+        keywords:
+          'Nosotros Power Cleaner, marca Power Cleaner, empresa de productos de limpieza',
+      },
     },
     {
       path: '/servicios',
@@ -41,6 +70,13 @@ const router = createRouter({
       path: '/contacto',
       name: 'Contacto',
       component: () => import('@/views/Contacto.vue'),
+      meta: {
+        title: 'Contacto | Power Cleaner - Productos de Limpieza',
+        description:
+          'Contacta a Power Cleaner para resolver tus dudas sobre nuestros productos de limpieza, solicitar información y recibir atención personalizada.',
+        keywords:
+          'Contacto Power Cleaner, contactar Power Cleaner, atención Power Cleaner',
+      },
     },
     {
       path: '/maquila-tu-producto',
@@ -114,6 +150,13 @@ const router = createRouter({
     // 3. Al entrar a una página o ruta distinta, posiciona la vista al inicio
     return { top: 0 }
   },
+})
+
+// Control dinámico de SEO en cada cambio de ruta
+router.afterEach((to) => {
+  if (to.meta) {
+    updateSEO(to.meta)
+  }
 })
 
 export default router
