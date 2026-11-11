@@ -82,6 +82,14 @@ const router = createRouter({
       path: '/maquila-tu-producto',
       name: 'MaquilaTuProducto',
       component: () => import('@/views/MaquilaTuProducto.vue'),
+      meta: {
+        title: 'Maquila de Productos de Limpieza | Crea tu Marca con Power Cleaner',
+        description:
+          'Crea tu propia marca de productos de limpieza con la calidad de Power Cleaner. Desarrollamos y fabricamos tus fórmulas químicas con alta tecnología, envasado y asesoría.',
+        keywords:
+          'maquila de productos de limpieza, fabricar productos de limpieza, crear marca de limpieza, laboratorio de limpieza química, maquiladora de químicos, Power Cleaner maquila',
+        image: '/src/assets/images/maquila.webp',
+      },
     },
     {
       path: '/aviso-de-privacidad',
@@ -100,8 +108,17 @@ const router = createRouter({
     },
     {
       path: '/surtimos-tu-negocio',
+      alias: ['/surtimos-tu-local'],
       name: 'SurtimosTuNegocio',
       component: () => import('@/views/SurtimosTuNegocio.vue'),
+      meta: {
+        title: 'Surtimos tu Local y Negocio | Proveedor de Limpieza por Mayoreo | Power Cleaner',
+        description:
+          'Surtimos tu negocio, tienda o local con productos de limpieza Power Cleaner a granel o envasados. Precios directos de fábrica, excelente margen y máxima calidad.',
+        keywords:
+          'surtimos tu local, surtir negocio de limpieza, proveedor de productos de limpieza, venta a granel de limpieza, productos de limpieza por mayoreo, distribuidor Power Cleaner',
+        image: '/src/assets/images/negocio.webp',
+      },
     },
 
     {
@@ -113,6 +130,14 @@ const router = createRouter({
       path: '/venta-de-franquicias',
       name: 'VentaDeFranquicias',
       component: () => import('../views/VentaDeFranquicias.vue'),
+      meta: {
+        title: 'Venta de Franquicias de Limpieza | Emprende con Power Cleaner',
+        description:
+          'Adquiere una franquicia Power Cleaner y comienza un negocio rentable de productos de limpieza profesional con respaldo garantizado, capacitación y amplio catálogo.',
+        keywords:
+          'venta de franquicias, franquicia de productos de limpieza, franquicias rentables México, abrir tienda de limpieza, modelo de franquicia Power Cleaner',
+        image: '/src/assets/images/franquicias.webp',
+      },
     },
     {
       path: '/auth',
